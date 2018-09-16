@@ -11,18 +11,19 @@ import Foundation
 class DataService {
     static let instance = DataService()
     
-    private let food = [
+    private(set) var foodArray = [
         foodItem(name: "Apple", imageName: "apple.jpg"),
         foodItem(name: "Pineapple", imageName: "pineapple.jpg"),
         foodItem(name: "Orange", imageName: "orange.jpg"),
         foodItem(name: "Peach", imageName: "peach.jpg"),
         foodItem(name: "Orange", imageName: "orange.jpg"),
         foodItem(name: "Lemon", imageName: "lemon.jpg"),
-        
     ]
     
-    
+    func addFood(_ food: foodItem) {
+        foodArray.append(food)
+    }
     func getFood() -> [foodItem] {
-        return food
+        return foodArray
     }
 }

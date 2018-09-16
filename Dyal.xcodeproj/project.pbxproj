@@ -14,7 +14,7 @@
 		C26995492097CBF900BE0829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26995482097CBF900BE0829 /* Assets.xcassets */; };
 		C269954C2097CBF900BE0829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */; };
 		C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E32098EF3A0036FD19 /* LoginViewController.swift */; };
-		C2A361E62099D3930036FD19 /* foodItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E52099D3930036FD19 /* foodItems.swift */; };
+		C2A361E62099D3930036FD19 /* foodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E52099D3930036FD19 /* foodItem.swift */; };
 		C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A3F20B209B2F750067484B /* CustomUITextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 		C269954B2097CBF900BE0829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C269954D2097CBF900BE0829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2A361E32098EF3A0036FD19 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		C2A361E52099D3930036FD19 /* foodItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodItems.swift; sourceTree = "<group>"; };
+		C2A361E52099D3930036FD19 /* foodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodItem.swift; sourceTree = "<group>"; };
 		C2A3F20B209B2F750067484B /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +67,7 @@
 				C21B430E214EB61300D4F2EE /* data.swift */,
 				C26995452097CBF900BE0829 /* Main.storyboard */,
 				C2A3F20B209B2F750067484B /* CustomUITextField.swift */,
-				C2A361E52099D3930036FD19 /* foodItems.swift */,
+				C2A361E52099D3930036FD19 /* foodItem.swift */,
 				C2A361E32098EF3A0036FD19 /* LoginViewController.swift */,
 				C26995482097CBF900BE0829 /* Assets.xcassets */,
 				C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */,
@@ -149,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2A361E62099D3930036FD19 /* foodItems.swift in Sources */,
+				C2A361E62099D3930036FD19 /* foodItem.swift in Sources */,
 				C21B430F214EB61300D4F2EE /* data.swift in Sources */,
 				C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */,
 				C26995442097CBF900BE0829 /* ViewController.swift in Sources */,

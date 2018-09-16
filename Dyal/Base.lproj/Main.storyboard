@@ -24,27 +24,27 @@
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="9" maxX="0.0" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="14" id="WV3-GH-SeW">
                                     <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="55"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="FoodItem" id="tNK-Sz-Rkk">
-                                        <rect key="frame" x="0.66666666666666663" y="0.0" width="374" height="240"/>
+                                        <rect key="frame" x="0.66666666666666663" y="55" width="374" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="15" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banan" translatesAutoresizingMaskIntoConstraints="NO" id="ZWz-nn-qT0">
+                                                <imageView userInteractionEnabled="NO" tag="15" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="ZWz-nn-qT0">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="240"/>
                                                 </imageView>
                                                 <view clipsSubviews="YES" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3l7-cg-Cz9">
                                                     <rect key="frame" x="0.0" y="121" width="374" height="119"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAE-hC-5yL">
-                                                            <rect key="frame" x="16" y="20.000000000000004" width="90" height="34.333333333333343"/>
-                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="25"/>
+                                                            <rect key="frame" x="16" y="20.000000000000004" width="86.666666666666671" height="34.333333333333343"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -77,6 +77,43 @@
                                         <size key="customSize" width="374" height="240"/>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Header" id="5GV-p3-vaz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Еда" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y70-Qz-oW8">
+                                            <rect key="frame" x="28" y="14" width="53" height="26"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="29"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="y70-Qz-oW8" firstAttribute="top" secondItem="5GV-p3-vaz" secondAttribute="topMargin" constant="6" id="HiY-OK-1id"/>
+                                        <constraint firstItem="y70-Qz-oW8" firstAttribute="leading" secondItem="5GV-p3-vaz" secondAttribute="leadingMargin" constant="20" id="R9q-yH-plM"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="y70-Qz-oW8" secondAttribute="bottom" constant="7" id="gBu-n0-PYl"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Footer" id="XXe-uX-3XM">
+                                    <rect key="frame" x="0.0" y="295" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vW1-Nm-2er">
+                                            <rect key="frame" x="167.66666666666666" y="5" width="40" height="40"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                            <state key="normal" title="Add">
+                                                <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="tapAddButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Gk-Da-8wj"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="vW1-Nm-2er" firstAttribute="centerY" secondItem="XXe-uX-3XM" secondAttribute="centerY" id="Vb6-c1-WsB"/>
+                                        <constraint firstItem="vW1-Nm-2er" firstAttribute="centerX" secondItem="XXe-uX-3XM" secondAttribute="centerX" id="xWq-lc-L2L"/>
+                                    </constraints>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Y2A-Ma-KbE"/>
                                 </connections>
@@ -98,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679.2" y="131.52709359605913"/>
+            <point key="canvasLocation" x="1678.5" y="131"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="7Y6-Fu-Gu8">
@@ -308,6 +345,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="banan" width="650" height="366"/>
+        <image name="banana" width="650" height="366"/>
     </resources>
 </document>
