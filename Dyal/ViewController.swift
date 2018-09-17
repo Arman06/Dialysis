@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        foodCollection.delegate = self
+        foodCollection.dataSource = self
         let cellSize = CGSize(width: view.frame.width - 40, height: view.frame.height / 3.5)
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = CGSize(width: 55, height: 59)
@@ -28,6 +30,16 @@ class ViewController: UIViewController {
         foodCollection.reloadData()
         
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailsSegue"{
+            if let destination = segue.destination as? DetailsViewController, let index = foodCollection.indexPathsForSelectedItems?.first {
+                destination.name = DataService.instance.getFood()[index.row].name
+                destination.imageName = DataService.instance.getFood()[index.row].imageName
+            }
+        }
+    }
 
 
     @IBAction func tapAddButton(_ sender: Any) {
@@ -35,11 +47,19 @@ class ViewController: UIViewController {
     }
     
 
+      @IBAction func unwindTo(sender: UIStoryboardSegue) {}
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DataService.instance.getFood().count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodItem", for: indexPath)
+        if let label = cell.viewWithTag(2) as? UILabel {
+            print(label.text ?? "nothing")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

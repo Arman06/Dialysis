@@ -12,12 +12,12 @@ class DataService {
     static let instance = DataService()
     
     private(set) var foodArray = [
-        foodItem(name: "Apple", imageName: "apple.jpg"),
-        foodItem(name: "Pineapple", imageName: "pineapple.jpg"),
-        foodItem(name: "Orange", imageName: "orange.jpg"),
-        foodItem(name: "Peach", imageName: "peach.jpg"),
-        foodItem(name: "Orange", imageName: "orange.jpg"),
-        foodItem(name: "Lemon", imageName: "lemon.jpg"),
+        foodItem(name: "Яблоко", imageName: "apple.jpg"),
+        foodItem(name: "Ананас", imageName: "pineapple.jpg"),
+        foodItem(name: "Апельсин", imageName: "orange.jpg"),
+        foodItem(name: "Персик", imageName: "peach.jpg"),
+        foodItem(name: "Банан", imageName: "banana.jpg"),
+        foodItem(name: "Лимон", imageName: "lemon.jpg"),
     ]
     
     func addFood(_ food: foodItem) {

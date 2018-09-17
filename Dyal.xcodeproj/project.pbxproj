@@ -13,6 +13,7 @@
 		C26995472097CBF900BE0829 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C26995452097CBF900BE0829 /* Main.storyboard */; };
 		C26995492097CBF900BE0829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26995482097CBF900BE0829 /* Assets.xcassets */; };
 		C269954C2097CBF900BE0829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */; };
+		C26E9484214FAB9500369C32 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26E9483214FAB9500369C32 /* DetailsViewController.swift */; };
 		C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E32098EF3A0036FD19 /* LoginViewController.swift */; };
 		C2A361E62099D3930036FD19 /* foodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E52099D3930036FD19 /* foodItem.swift */; };
 		C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A3F20B209B2F750067484B /* CustomUITextField.swift */; };
@@ -27,6 +28,7 @@
 		C26995482097CBF900BE0829 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C269954B2097CBF900BE0829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C269954D2097CBF900BE0829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C26E9483214FAB9500369C32 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C2A361E32098EF3A0036FD19 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C2A361E52099D3930036FD19 /* foodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodItem.swift; sourceTree = "<group>"; };
 		C2A3F20B209B2F750067484B /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				C26995412097CBF900BE0829 /* AppDelegate.swift */,
 				C26995432097CBF900BE0829 /* ViewController.swift */,
+				C26E9483214FAB9500369C32 /* DetailsViewController.swift */,
 				C21B430E214EB61300D4F2EE /* data.swift */,
 				C26995452097CBF900BE0829 /* Main.storyboard */,
 				C2A3F20B209B2F750067484B /* CustomUITextField.swift */,
@@ -153,6 +156,7 @@
 				C21B430F214EB61300D4F2EE /* data.swift in Sources */,
 				C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */,
 				C26995442097CBF900BE0829 /* ViewController.swift in Sources */,
+				C26E9484214FAB9500369C32 /* DetailsViewController.swift in Sources */,
 				C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */,
 				C26995422097CBF900BE0829 /* AppDelegate.swift in Sources */,
 			);
