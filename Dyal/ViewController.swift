@@ -13,28 +13,52 @@ class ViewController: UIViewController {
   
     @IBOutlet weak var foodCollection: UICollectionView!
     
+    
+    func oreintationIsPortatrait() -> Bool {
+        let size = UIScreen.main.bounds.size
+        if size.width < size.height {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodCollection.delegate = self
         foodCollection.dataSource = self
-        let cellSize = CGSize(width: view.frame.width - 40, height: view.frame.height / 3.5)
+        configureCollectionView(CGSize(width: view.frame.width, height: view.frame.height))
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        configureCollectionView(size)
+    }
+    
+    func configureCollectionView(_ size: CGSize) {
+        var cellSize: CGSize
+        print(oreintationIsPortatrait())
+        if oreintationIsPortatrait() {
+            cellSize = CGSize(width: size.width - 45, height: size.height / 3)
+        } else {
+            cellSize = CGSize(width: size.width / 1.5, height: size.height / 1.8)
+        }
+
         let layout = UICollectionViewFlowLayout()
-        layout.headerReferenceSize = CGSize(width: 55, height: 59)
+        layout.headerReferenceSize = CGSize(width: 55, height: 65)
         layout.scrollDirection = .vertical
         layout.itemSize = cellSize
-        //layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
         layout.minimumLineSpacing = 20.0
         layout.minimumInteritemSpacing = 20.0
         layout.footerReferenceSize = CGSize(width: 59, height: 70)
         foodCollection.setCollectionViewLayout(layout, animated: true)
         foodCollection.reloadData()
-        
     }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsSegue"{
-            if let destination = segue.destination as? DetailsViewController, let index = foodCollection.indexPathsForSelectedItems?.first {
+            if let destination = segue.destination as? DetailsViewController,
+                let index = sender as? IndexPath {
                 destination.name = DataService.instance.getFood()[index.row].name
                 destination.imageName = DataService.instance.getFood()[index.row].imageName
             }
@@ -47,7 +71,9 @@ class ViewController: UIViewController {
     }
     
 
-      @IBAction func unwindTo(sender: UIStoryboardSegue) {}
+    @IBAction func unwindTo(sender: UIStoryboardSegue) {}
+    
+    
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -56,10 +82,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodItem", for: indexPath)
-        if let label = cell.viewWithTag(2) as? UILabel {
-            print(label.text ?? "nothing")
-        }
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodItem", for: indexPath)
+        performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -82,11 +106,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         
     }
     
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodItem", for: indexPath)
         if let label = cell.viewWithTag(2) as? UILabel {
             label.text = DataService.instance.getFood()[indexPath.row].name
+        }
+        if let label = cell.viewWithTag(34) as? UILabel {
+            label.text = "K: \(DataService.instance.getFood()[indexPath.row].potassium)"
+        }
+        if let label = cell.viewWithTag(35) as? UILabel {
+            label.text = "Na: \(DataService.instance.getFood()[indexPath.row].sodium)"
         }
         if let image = cell.viewWithTag(15) as? UIImageView {
             image.image = UIImage(named: DataService.instance.getFood()[indexPath.row].imageName)
@@ -100,11 +129,4 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         cell.contentView.layer.masksToBounds = true
         return cell
     }
-    
-    
-    
-    
-    
-    
-    
 }
