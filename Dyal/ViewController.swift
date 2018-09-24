@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import os.log
 
 class ViewController: UIViewController {
     
   
     @IBOutlet weak var foodCollection: UICollectionView!
+    
+    
+    private func saveFood() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(DataService.instance.getFood(), toFile: foodItem.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Food saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save food :(", log: OSLog.default, type: .error)
+        }
+    }
     
     
     func oreintationIsPortatrait() -> Bool {
@@ -73,6 +85,10 @@ class ViewController: UIViewController {
 
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
     
+    
+    private func loadFood() -> [foodItem]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: foodItem.ArchiveURL.path) as? [foodItem]
+    }
     
 }
 
