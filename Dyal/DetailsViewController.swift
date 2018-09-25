@@ -10,6 +10,7 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
+    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var textView: UIView!
     var name: String!
@@ -21,17 +22,25 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        textView.layer.borderWidth = 0.5
         textView.layer.masksToBounds = true
         textView.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         detailsLabel.text = name
         detailsImage.image = UIImage(named: imageName)
         detailsImage.layer.cornerRadius = 13
         detailsImage.layer.masksToBounds = true
+        configureButton(for: backButton, withRadius: 15)
     }
     
-
+    func configureButton(for button: UIButton, withRadius radius: CGFloat) {
+        button.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+        button.layer.cornerRadius = radius
+        button.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        button.layer.shadowOffset = CGSize(width: 2, height: 5)
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowRadius = 4.0
+        button.layer.masksToBounds = false
+        button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+    }
     /*
     // MARK: - Navigation
 
