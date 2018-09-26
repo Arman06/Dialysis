@@ -166,21 +166,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgd-65-chi">
-                                <rect key="frame" x="16" y="95" width="71" height="32"/>
+                                <rect key="frame" x="16" y="69" width="80" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="4MC-An-iBc"/>
-                                    <constraint firstAttribute="width" constant="71" id="XFu-Wk-YsB"/>
+                                    <constraint firstAttribute="width" constant="80" id="XFu-Wk-YsB"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Отмена"/>
                                 <connections>
                                     <segue destination="x7P-5N-D7x" kind="unwind" unwindAction="unwindToSender:" id="Xv8-1z-QT7"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="ceC-br-Fgy">
-                                <rect key="frame" x="16" y="156" width="382" height="457"/>
+                                <rect key="frame" x="16" y="130" width="382" height="457"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o47-LN-BEN">
-                                        <rect key="frame" x="0.0" y="64" width="382" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="jr0-jR-Gmw"/>
                                         </constraints>
@@ -240,7 +240,7 @@
                             <constraint firstItem="ceC-br-Fgy" firstAttribute="leading" secondItem="r3z-ep-qbW" secondAttribute="leading" constant="16" id="nCO-1v-Gei"/>
                             <constraint firstItem="ceC-br-Fgy" firstAttribute="top" secondItem="fgd-65-chi" secondAttribute="bottom" constant="29" id="qzF-Na-ijG"/>
                             <constraint firstItem="r3z-ep-qbW" firstAttribute="trailing" secondItem="ceC-br-Fgy" secondAttribute="trailing" constant="16" id="tOI-zE-Rx6"/>
-                            <constraint firstItem="fgd-65-chi" firstAttribute="top" secondItem="r3z-ep-qbW" secondAttribute="top" constant="51" id="wee-AR-lBL"/>
+                            <constraint firstItem="fgd-65-chi" firstAttribute="top" secondItem="r3z-ep-qbW" secondAttribute="top" constant="25" id="wee-AR-lBL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r3z-ep-qbW"/>
                     </view>
@@ -264,24 +264,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bja-0e-ZJA">
-                                <rect key="frame" x="16" y="95" width="71" height="32"/>
+                                <rect key="frame" x="16" y="69" width="71" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="TVZ-Bk-uOx"/>
                                     <constraint firstAttribute="height" constant="32" id="rMZ-RF-ISw"/>
                                 </constraints>
-                                <state key="normal" title="Back"/>
+                                <state key="normal" title="Назад"/>
                                 <connections>
                                     <segue destination="SK6-Rb-f7M" kind="unwind" unwindAction="unwindToSender:" id="TiH-vk-6bd"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="15" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="2Pc-3X-IDp">
-                                <rect key="frame" x="16" y="178" width="382" height="197"/>
+                                <rect key="frame" x="16" y="152" width="382" height="197"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="197" id="QYN-QK-S1l"/>
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5T-Aj-Kkw">
-                                <rect key="frame" x="16" y="347" width="382" height="549"/>
+                                <rect key="frame" x="16" y="321" width="382" height="575"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Банан" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doY-zo-Rbg">
                                         <rect key="frame" x="16" y="20" width="74" height="35"/>
@@ -289,10 +289,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Здесь будут характеристики" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LY5-ya-aZ3">
-                                        <rect key="frame" x="12" y="70" width="358" height="478"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LY5-ya-aZ3">
+                                        <rect key="frame" x="12" y="70" width="358" height="504"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="42"/>
+                                        <string key="text">  Натрий: 0 mg   Калий: 0 mg
+</string>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -316,7 +318,7 @@
                             <constraint firstItem="2Pc-3X-IDp" firstAttribute="leading" secondItem="2i5-yh-phZ" secondAttribute="leading" constant="16" id="Tfd-7Z-dhl"/>
                             <constraint firstItem="d5T-Aj-Kkw" firstAttribute="leading" secondItem="2i5-yh-phZ" secondAttribute="leading" constant="16" id="aZr-3a-xhW"/>
                             <constraint firstItem="2Pc-3X-IDp" firstAttribute="top" secondItem="bja-0e-ZJA" secondAttribute="bottom" constant="51" id="awe-H7-DwE"/>
-                            <constraint firstItem="bja-0e-ZJA" firstAttribute="top" secondItem="2i5-yh-phZ" secondAttribute="top" constant="51" id="vlr-WM-xrf"/>
+                            <constraint firstItem="bja-0e-ZJA" firstAttribute="top" secondItem="2i5-yh-phZ" secondAttribute="top" constant="25" id="vlr-WM-xrf"/>
                             <constraint firstItem="bja-0e-ZJA" firstAttribute="leading" secondItem="2i5-yh-phZ" secondAttribute="leading" constant="16" id="xxa-QN-wCl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2i5-yh-phZ"/>
@@ -325,7 +327,7 @@
                         <outlet property="backButton" destination="bja-0e-ZJA" id="LyG-z8-7gz"/>
                         <outlet property="detailsImage" destination="2Pc-3X-IDp" id="dwM-tq-bNZ"/>
                         <outlet property="detailsLabel" destination="doY-zo-Rbg" id="hdY-bx-88j"/>
-                        <outlet property="textView" destination="d5T-Aj-Kkw" id="V7S-tT-TLn"/>
+                        <outlet property="textView" destination="LY5-ya-aZ3" id="7yW-ki-DE1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAm-gS-mUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -353,7 +355,7 @@
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="M2t-Dt-PPm">
                                         <rect key="frame" x="10" y="20" width="326" height="179"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gy8-mM-30g">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gy8-mM-30g">
                                                 <rect key="frame" x="0.0" y="0.0" width="326" height="129"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4gw-Jb-yF8">
@@ -456,7 +458,7 @@
                             <constraint firstItem="abs-Jg-lq7" firstAttribute="trailing" secondItem="STT-4Z-KYI" secondAttribute="trailing" constant="191" id="HM3-xE-WHi"/>
                             <constraint firstItem="STT-4Z-KYI" firstAttribute="top" secondItem="abs-Jg-lq7" secondAttribute="top" constant="22" id="LLl-jx-ezF"/>
                             <constraint firstItem="abs-Jg-lq7" firstAttribute="trailing" secondItem="ASp-aJ-wPe" secondAttribute="trailing" constant="34" id="RTh-1d-3fH"/>
-                            <constraint firstItem="abs-Jg-lq7" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="ASp-aJ-wPe" secondAttribute="bottom" constant="362" id="T3N-by-JOq"/>
+                            <constraint firstItem="abs-Jg-lq7" firstAttribute="bottom" secondItem="ASp-aJ-wPe" secondAttribute="bottom" constant="362" id="T3N-by-JOq"/>
                             <constraint firstItem="ASp-aJ-wPe" firstAttribute="top" secondItem="STT-4Z-KYI" secondAttribute="bottom" constant="86.5" id="chh-8F-WGq"/>
                             <constraint firstItem="STT-4Z-KYI" firstAttribute="leading" secondItem="abs-Jg-lq7" secondAttribute="leading" constant="31" id="e4G-Mt-uVk"/>
                             <constraint firstItem="ASp-aJ-wPe" firstAttribute="leading" secondItem="abs-Jg-lq7" secondAttribute="leading" constant="34" id="rE2-c9-Fuc"/>
@@ -558,6 +560,7 @@
                             <constraint firstItem="Mmc-Y6-w5B" firstAttribute="top" secondItem="bWC-PS-E7G" secondAttribute="top" id="GQx-It-1Su"/>
                             <constraint firstAttribute="bottom" secondItem="Mmc-Y6-w5B" secondAttribute="bottom" id="keG-JX-moM"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="hUU-j0-zZp"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccA-kk-8kc" userLabel="First Responder" sceneMemberID="firstResponder"/>

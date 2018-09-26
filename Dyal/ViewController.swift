@@ -73,6 +73,8 @@ class ViewController: UIViewController {
                 let index = sender as? IndexPath {
                 destination.name = DataService.instance.getFood()[index.row].name
                 destination.imageName = DataService.instance.getFood()[index.row].imageName
+                destination.potassium = DataService.instance.getFood()[index.row].potassium
+                destination.sodium = DataService.instance.getFood()[index.row].sodium
             }
         }
     }

@@ -12,18 +12,22 @@ class DetailsViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
     
-    @IBOutlet weak var textView: UIView!
+    @IBOutlet weak var textView: UITextView!
     var name: String!
     
     var imageName: String!
+    
+    var potassium: Float!
+    
+    @IBOutlet weak var descriptionText: UITextView!
+    var sodium: Float!
     
     @IBOutlet private weak var detailsLabel: UILabel!
     @IBOutlet private weak var detailsImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.layer.masksToBounds = true
-        textView.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        textView.text = "  Натрий: \(String(sodium)) mg\n  Калий: \(String(potassium)) mg"
         detailsLabel.text = name
         detailsImage.image = UIImage(named: imageName)
         detailsImage.layer.cornerRadius = 13
