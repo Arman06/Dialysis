@@ -110,6 +110,7 @@
                                     <constraints>
                                         <constraint firstItem="y70-Qz-oW8" firstAttribute="top" secondItem="5GV-p3-vaz" secondAttribute="topMargin" constant="7" id="HiY-OK-1id"/>
                                         <constraint firstItem="y70-Qz-oW8" firstAttribute="leading" secondItem="5GV-p3-vaz" secondAttribute="leadingMargin" constant="19" id="R9q-yH-plM"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y70-Qz-oW8" secondAttribute="trailing" constant="332.32999999999998" id="wwc-nd-JIi"/>
                                     </constraints>
                                 </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Footer" id="XXe-uX-3XM">
@@ -169,7 +170,7 @@
                                 <rect key="frame" x="16" y="69" width="80" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="4MC-An-iBc"/>
-                                    <constraint firstAttribute="width" constant="80" id="XFu-Wk-YsB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="XFu-Wk-YsB"/>
                                 </constraints>
                                 <state key="normal" title="Отмена"/>
                                 <connections>
@@ -237,6 +238,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fgd-65-chi" firstAttribute="leading" secondItem="r3z-ep-qbW" secondAttribute="leading" constant="16" id="0Wf-Xy-10B"/>
+                            <constraint firstItem="r3z-ep-qbW" firstAttribute="trailing" secondItem="fgd-65-chi" secondAttribute="trailing" constant="318" id="m5L-a0-CDe"/>
                             <constraint firstItem="ceC-br-Fgy" firstAttribute="leading" secondItem="r3z-ep-qbW" secondAttribute="leading" constant="16" id="nCO-1v-Gei"/>
                             <constraint firstItem="ceC-br-Fgy" firstAttribute="top" secondItem="fgd-65-chi" secondAttribute="bottom" constant="29" id="qzF-Na-ijG"/>
                             <constraint firstItem="r3z-ep-qbW" firstAttribute="trailing" secondItem="ceC-br-Fgy" secondAttribute="trailing" constant="16" id="tOI-zE-Rx6"/>
@@ -266,7 +268,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bja-0e-ZJA">
                                 <rect key="frame" x="16" y="69" width="71" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="71" id="TVZ-Bk-uOx"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="71" id="TVZ-Bk-uOx"/>
                                     <constraint firstAttribute="height" constant="32" id="rMZ-RF-ISw"/>
                                 </constraints>
                                 <state key="normal" title="Назад"/>
@@ -303,6 +305,7 @@
                                     <constraint firstItem="doY-zo-Rbg" firstAttribute="leading" secondItem="d5T-Aj-Kkw" secondAttribute="leading" constant="16" id="BCm-HN-5yr"/>
                                     <constraint firstItem="LY5-ya-aZ3" firstAttribute="leading" secondItem="d5T-Aj-Kkw" secondAttribute="leading" constant="12" id="Ofx-sV-msR"/>
                                     <constraint firstItem="doY-zo-Rbg" firstAttribute="top" secondItem="d5T-Aj-Kkw" secondAttribute="top" constant="20" id="grF-LP-8uE"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="doY-zo-Rbg" secondAttribute="trailing" constant="292" id="mP0-8z-LwG"/>
                                     <constraint firstAttribute="trailing" secondItem="LY5-ya-aZ3" secondAttribute="trailing" constant="12" id="o78-81-wFP"/>
                                     <constraint firstAttribute="bottom" secondItem="LY5-ya-aZ3" secondAttribute="bottom" constant="1" id="uLd-ak-8pZ"/>
                                     <constraint firstItem="LY5-ya-aZ3" firstAttribute="top" secondItem="doY-zo-Rbg" secondAttribute="bottom" constant="15" id="w1g-6A-dZo"/>
@@ -312,6 +315,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="d5T-Aj-Kkw" secondAttribute="bottom" id="4Ab-5s-l97"/>
+                            <constraint firstItem="2i5-yh-phZ" firstAttribute="trailing" secondItem="bja-0e-ZJA" secondAttribute="trailing" constant="327" id="CfI-qo-fSp"/>
                             <constraint firstItem="2i5-yh-phZ" firstAttribute="trailing" secondItem="d5T-Aj-Kkw" secondAttribute="trailing" constant="16" id="Lcm-tP-PGz"/>
                             <constraint firstItem="2i5-yh-phZ" firstAttribute="trailing" secondItem="2Pc-3X-IDp" secondAttribute="trailing" constant="16" id="OP9-Lh-sOM"/>
                             <constraint firstItem="d5T-Aj-Kkw" firstAttribute="top" secondItem="2Pc-3X-IDp" secondAttribute="bottom" constant="-28" id="T4Q-ok-XpT"/>
