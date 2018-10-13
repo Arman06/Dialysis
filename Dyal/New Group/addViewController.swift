@@ -24,26 +24,15 @@ class addViewController: UIViewController, UIImagePickerControllerDelegate, UINa
             image.layer.cornerRadius = 13
             image.layer.masksToBounds = true
         }
-        
-        imageContainer.layer.masksToBounds = false
-        imageContainer.layer.shadowColor = UIColor.black.cgColor
-        imageContainer.layer.shadowOffset = CGSize(width: 2, height: 15)
-        imageContainer.layer.shadowOpacity = 0.1
-        imageContainer.layer.shadowRadius = 4.0
-        configureButton(for: pickImageButton, withRadius: 10)
-        configureButton(for: cancelButton, withRadius: 15)
+        imageContainer.layer.cornerRadius = 13
+        imageContainer.layer.masksToBounds = true
+//        imageContainer.layer.masksToBounds = false
+//        imageContainer.layer.shadowColor = UIColor.black.cgColor
+//        imageContainer.layer.shadowOffset = CGSize(width: 2, height: 15)
+//        imageContainer.layer.shadowOpacity = 0.1
+//        imageContainer.layer.shadowRadius = 4.0
     }
 
-    func configureButton(for button: UIButton, withRadius radius: CGFloat) {
-        button.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
-        button.layer.cornerRadius = radius
-        button.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        button.layer.shadowOffset = CGSize(width: 2, height: 5)
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowRadius = 4.0
-        button.layer.masksToBounds = false
-        button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
-    }
     @IBAction func pickImageTapped(_ sender: UIButton) {
         
         let imagePickerController = UIImagePickerController()
