@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginBoxBottomConstraint: NSLayoutConstraint!
     
-    var constraintBottomAfter: CGFloat = 0.0
+    var constraintBottomHolder: CGFloat = 0.0
     
     
     @IBOutlet weak var bottomRegistrationConstraints: NSLayoutConstraint!
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
         textFieldsSetup()
         configureTapGesture()
         loginBoxBottomConstraint.constant = view.frame.height / 2.5
-        constraintBottomAfter = loginBoxBottomConstraint.constant
+        constraintBottomHolder = loginBoxBottomConstraint.constant
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
@@ -41,18 +41,26 @@ class LoginViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let info = notification.userInfo {
             let keyboardRect: CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
-            self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 1.5, animations:{
-                    self.view.layoutIfNeeded()
-                    self.loginBoxBottomConstraint.constant = self.constraintBottomAfter + 60
-                    self.bottomRegistrationConstraints.constant = keyboardRect.height
-                })
+            if keyboardRect.height > 0 {
+                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 1.5, animations:{
+                        self.view.layoutIfNeeded()
+                        print("\(self.constraintBottomHolder) - \(keyboardRect.height + 20 + 30)")
+                        print(self.constraintBottomHolder - (keyboardRect.height + 20 + 30))
+                        print(((self.constraintBottomHolder - (keyboardRect.height + 20 + 30)) > 50))
+                        if (self.constraintBottomHolder - (keyboardRect.height + 20 + 30)) < 30 {
+                            self.loginBoxBottomConstraint.constant = self.constraintBottomHolder + 65
+                        }
+                    
+                        self.bottomRegistrationConstraints.constant = keyboardRect.height
+                    })
+            }
         }
     }
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 1.5, animations:{
             self.view.layoutIfNeeded()
-            self.loginBoxBottomConstraint.constant -= 60
+            self.loginBoxBottomConstraint.constant = self.constraintBottomHolder
             self.bottomRegistrationConstraints.constant = 20
         })
     }

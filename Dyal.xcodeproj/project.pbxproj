@@ -55,6 +55,9 @@
 			isa = PBXGroup;
 			children = (
 				C26995402097CBF900BE0829 /* Dyal */,
+				C26995412097CBF900BE0829 /* AppDelegate.swift */,
+				C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */,
+				C26995482097CBF900BE0829 /* Assets.xcassets */,
 				C269953F2097CBF900BE0829 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +73,7 @@
 		C26995402097CBF900BE0829 /* Dyal */ = {
 			isa = PBXGroup;
 			children = (
+				C269954D2097CBF900BE0829 /* Info.plist */,
 				C2DC6712217272B0002DE74B /* Assistant */,
 				C2DC670E21727229002DE74B /* View */,
 				C2DC671021727265002DE74B /* Controller */,
@@ -113,10 +117,6 @@
 		C2DC6712217272B0002DE74B /* Assistant */ = {
 			isa = PBXGroup;
 			children = (
-				C26995412097CBF900BE0829 /* AppDelegate.swift */,
-				C26995482097CBF900BE0829 /* Assets.xcassets */,
-				C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */,
-				C269954D2097CBF900BE0829 /* Info.plist */,
 			);
 			path = Assistant;
 			sourceTree = "<group>";
