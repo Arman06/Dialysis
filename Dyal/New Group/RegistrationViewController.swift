@@ -17,6 +17,7 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTapGesture()
+        nextButtonAfterConstraint = nextButtonBottomConstraint.constant
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
@@ -26,16 +27,16 @@ class RegistrationViewController: UIViewController {
         if let info = notification.userInfo {
             let keyboardRect: CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
             self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 1.5, animations:{
-                self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 4, animations:{
                 self.nextButtonBottomConstraint.constant = keyboardRect.height + 20
+                self.view.layoutIfNeeded()
             })
         }
     }
     @objc func keyboardWillHide(notification: NSNotification) {
-        UIView.animate(withDuration: 1.5, animations:{
+        UIView.animate(withDuration: 4, animations:{
+            self.nextButtonBottomConstraint.constant = self.nextButtonAfterConstraint
             self.view.layoutIfNeeded()
-            self.nextButtonBottomConstraint.constant = 20
         })
     }
     

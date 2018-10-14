@@ -12,10 +12,11 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginBoxBottomConstraint: NSLayoutConstraint!
     
-    var constraintBottomHolder: CGFloat = 0.0
+    @IBOutlet weak var registrationButton: UIButton!
+    var constraintloginBoxBottomHolder: CGFloat = 0.0
+    var constraintRegButtonBottomHolder: CGFloat = 0.0
     
-    
-    @IBOutlet weak var bottomRegistrationConstraints: NSLayoutConstraint!
+    @IBOutlet weak var bottomRegistrationLostPasswordConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -26,8 +27,9 @@ class LoginViewController: UIViewController {
         loginButtonSetup()
         textFieldsSetup()
         configureTapGesture()
-        loginBoxBottomConstraint.constant = view.frame.height / 2.5
-        constraintBottomHolder = loginBoxBottomConstraint.constant
+        loginBoxBottomConstraint.constant = view.frame.height / 2.3
+        constraintloginBoxBottomHolder = loginBoxBottomConstraint.constant
+        constraintRegButtonBottomHolder = bottomRegistrationLostPasswordConstraint.constant
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
@@ -43,26 +45,26 @@ class LoginViewController: UIViewController {
             let keyboardRect: CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
             if keyboardRect.height > 0 {
                 self.view.layoutIfNeeded()
-                UIView.animate(withDuration: 1.5, animations:{
-                        self.view.layoutIfNeeded()
-                        print("\(self.constraintBottomHolder) - \(keyboardRect.height + 20 + 30)")
-                        print(self.constraintBottomHolder - (keyboardRect.height + 20 + 30))
-                        print(((self.constraintBottomHolder - (keyboardRect.height + 20 + 30)) > 50))
-                        if (self.constraintBottomHolder - (keyboardRect.height + 20 + 30)) < 30 {
-                            self.loginBoxBottomConstraint.constant = self.constraintBottomHolder + 65
+                let difference = loginBoxBottomConstraint.constant - (keyboardRect.height + registrationButton.frame.height + 25)
+                UIView.animate(withDuration: 4){
+                        if difference < 0 {
+                            self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder + abs(difference)
                         }
-                    
-                        self.bottomRegistrationConstraints.constant = keyboardRect.height
-                    })
+                        self.bottomRegistrationLostPasswordConstraint.constant = keyboardRect.height + 10
+                        self.view.layoutIfNeeded()
+                    }
             }
         }
     }
+    
     @objc func keyboardWillHide(notification: NSNotification) {
-        UIView.animate(withDuration: 1.5, animations:{
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 4){
+            self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder
+            self.bottomRegistrationLostPasswordConstraint.constant = self.constraintRegButtonBottomHolder
             self.view.layoutIfNeeded()
-            self.loginBoxBottomConstraint.constant = self.constraintBottomHolder
-            self.bottomRegistrationConstraints.constant = 20
-        })
+            
+        }
     }
     func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
