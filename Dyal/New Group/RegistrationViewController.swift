@@ -27,7 +27,7 @@ class RegistrationViewController: UIViewController {
         if let info = notification.userInfo {
             let keyboardRect: CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
             self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 4, animations:{
+            UIView.animate(withDuration: 0.3, animations:{
                 self.nextButtonBottomConstraint.constant = keyboardRect.height + 20
                 self.view.layoutIfNeeded()
             })

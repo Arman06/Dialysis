@@ -56,9 +56,8 @@ class addViewController: UIViewController, UIImagePickerControllerDelegate, UINa
             if keyboardRect.height > 0 {
                 self.view.layoutIfNeeded()
                 let difference = self.view.frame.height - (self.topStackViewConstraintConstantHolder + self.outerStackView.frame.height + keyboardRect.height + 15)
-                print(difference)
-                print("\(self.view.frame.height) - \(self.topStackViewConstraintConstantHolder + self.outerStackView.frame.height + keyboardRect.height) = \(difference)")
-                UIView.animate(withDuration: 3){
+//                print("\(self.view.frame.height) - \(self.topStackViewConstraintConstantHolder + self.outerStackView.frame.height + keyboardRect.height) = \(difference)")
+                UIView.animate(withDuration: 0.3){
                     if difference < 0 {
                     self.topStackViewConstraint.constant = self.topStackViewConstraintConstantHolder - abs(difference)
                     }

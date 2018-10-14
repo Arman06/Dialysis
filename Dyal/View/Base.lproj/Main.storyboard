@@ -102,7 +102,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Еда" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y70-Qz-oW8">
-                                            <rect key="frame" x="26.999999999999996" y="15" width="54.666666666666657" height="40"/>
+                                            <rect key="frame" x="27.000000000000004" y="15" width="54.333333333333343" height="40"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="29"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -371,24 +371,24 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ImB-vj-ybh">
-                                <rect key="frame" x="30" y="130" width="354" height="150"/>
+                                <rect key="frame" x="30" y="130" width="354" height="179.33333333333337"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VWx-0h-uzr">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="39.666666666666664"/>
                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uC0-7B-68S">
-                                        <rect key="frame" x="0.0" y="60" width="354" height="30"/>
+                                        <rect key="frame" x="0.0" y="69.666666666666657" width="354" height="39.666666666666657"/>
                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFi-7H-L75">
-                                        <rect key="frame" x="0.0" y="120" width="354" height="30"/>
+                                        <rect key="frame" x="0.0" y="139.33333333333331" width="354" height="40"/>
                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -411,6 +411,7 @@
                             <constraint firstItem="gR9-3U-ECh" firstAttribute="trailing" secondItem="ImB-vj-ybh" secondAttribute="trailing" constant="30" id="96M-Dm-KVl"/>
                             <constraint firstAttribute="bottom" secondItem="rZ2-bs-Ib9" secondAttribute="bottom" constant="53" id="Aye-kt-Bhg"/>
                             <constraint firstItem="kQh-lZ-lFa" firstAttribute="top" secondItem="gR9-3U-ECh" secondAttribute="top" constant="25" id="Beo-1U-hbr"/>
+                            <constraint firstItem="ImB-vj-ybh" firstAttribute="height" relation="greaterThanOrEqual" secondItem="jXI-nC-pQn" secondAttribute="height" multiplier="0.2" id="Dfz-T5-A53"/>
                             <constraint firstItem="ImB-vj-ybh" firstAttribute="leading" secondItem="gR9-3U-ECh" secondAttribute="leading" constant="30" id="EUV-He-xc9"/>
                             <constraint firstItem="kQh-lZ-lFa" firstAttribute="leading" secondItem="gR9-3U-ECh" secondAttribute="leading" constant="16" id="cId-Db-uze"/>
                         </constraints>

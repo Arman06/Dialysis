@@ -36,6 +36,11 @@ class LoginViewController: UIViewController {
     }
 
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        loginBoxBottomConstraint.constant = size.height / 2.3
+        constraintloginBoxBottomHolder = loginBoxBottomConstraint.constant
+    }
     
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
     
@@ -46,7 +51,7 @@ class LoginViewController: UIViewController {
             if keyboardRect.height > 0 {
                 self.view.layoutIfNeeded()
                 let difference = loginBoxBottomConstraint.constant - (keyboardRect.height + registrationButton.frame.height + 25)
-                UIView.animate(withDuration: 4){
+                UIView.animate(withDuration: 0.3){
                         if difference < 0 {
                             self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder + abs(difference)
                         }
@@ -59,7 +64,7 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 4){
+        UIView.animate(withDuration: 1){
             self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder
             self.bottomRegistrationLostPasswordConstraint.constant = self.constraintRegButtonBottomHolder
             self.view.layoutIfNeeded()
