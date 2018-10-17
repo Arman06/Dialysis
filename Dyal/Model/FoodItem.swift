@@ -64,8 +64,3 @@ struct PropertyKey {
 }
 
 
-extension FileManager {
-    static var documentURL: URL {
-        return FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    }
-}

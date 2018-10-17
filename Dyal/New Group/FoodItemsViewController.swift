@@ -9,11 +9,21 @@
 import UIKit
 import os.log
 
-class ViewController: UIViewController {
+class FoodItemsViewController: UIViewController {
     
-  
+    
+    var nameRecieved: String?
+    var potassiumRecieved: String?
+    var sodiumRecieved: String?
+    var imageNewRecieved: UIImage?
+    
     @IBOutlet weak var foodCollection: UICollectionView!
     
+    
+    
+    
+    
+    lazy var newImageCount = imageDictionary.count
     
     private func saveFood() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(DataService.instance.getFood(), toFile: foodItem.ArchiveURL.path)
@@ -40,6 +50,8 @@ class ViewController: UIViewController {
         foodCollection.delegate = self
         foodCollection.dataSource = self
         configureCollectionView(CGSize(width: view.frame.width, height: view.frame.height))
+        print(DataService.instance.getFood().last?.imageName)
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -72,7 +84,7 @@ class ViewController: UIViewController {
             if let destination = segue.destination as? DetailsViewController,
                 let index = sender as? IndexPath {
                 destination.name = DataService.instance.getFood()[index.row].name
-                destination.imageName = DataService.instance.getFood()[index.row].imageName
+                destination.image =  imageDictionary[DataService.instance.getFood()[index.row].imageName] as? UIImage
                 destination.potassium = DataService.instance.getFood()[index.row].potassium
                 destination.sodium = DataService.instance.getFood()[index.row].sodium
             }
@@ -84,8 +96,31 @@ class ViewController: UIViewController {
         print("tap")
     }
     
-
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
+    @IBAction func unwindwithDataTo(sender: UIStoryboardSegue) {
+        
+        if let sourceViewController = sender.source as? addViewController {
+            nameRecieved = sourceViewController.namePassed
+            print(nameRecieved ?? "none")
+            sodiumRecieved = sourceViewController.sodiumPassed
+            potassiumRecieved = sourceViewController.potassiumPassed
+            newImageCount += 1
+            imageNewRecieved = sourceViewController.imageNewPassed
+            imageDictionary["\(newImageCount) new image"] = imageNewRecieved ?? #imageLiteral(resourceName: "Image-placeholder")
+            
+            DataService.instance.addFood(foodItem(name: nameRecieved ?? "NoName", imageName: "\(newImageCount) new image", potassium: Float(potassiumRecieved ?? "0") ?? 0, sodium: Float(sodiumRecieved  ?? "0") ?? 0))
+            let index = IndexPath(row: DataService.instance.foodArray.count - 1, section: 0)
+//            foodCollection.insertItems(at: [index])
+            
+            //print(sourceViewController.imageNewPassed ?? "none")
+            print(DataService.instance.getFood().count)
+            print(foodCollection.numberOfItems(inSection: 0))
+//            foodCollection.reloadItems(at: [index])
+            foodCollection.reloadData()
+            
+            
+        }
+    }
     
     
     private func loadFood() -> [foodItem]? {
@@ -100,7 +135,11 @@ class ViewController: UIViewController {
 
 
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DataService.instance.getFood().count
     }
@@ -142,7 +181,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
             label.text = "Na: \(DataService.instance.getFood()[indexPath.row].sodium)"
         }
         if let image = cell.viewWithTag(15) as? UIImageView {
-            image.image = UIImage(named: DataService.instance.getFood()[indexPath.row].imageName)
+            image.image = imageDictionary[DataService.instance.getFood()[indexPath.row].imageName] as? UIImage
+            print(DataService.instance.getFood()[indexPath.row].imageName)
         }
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 2, height: 15)

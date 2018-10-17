@@ -27,14 +27,20 @@ class LoginViewController: UIViewController {
         loginButtonSetup()
         textFieldsSetup()
         configureTapGesture()
+        addNotificationObserevers()
+        configureConstraints()
+    }
+    
+    
+    func configureConstraints() {
         loginBoxBottomConstraint.constant = view.frame.height / 2.3
         constraintloginBoxBottomHolder = loginBoxBottomConstraint.constant
         constraintRegButtonBottomHolder = bottomRegistrationLostPasswordConstraint.constant
+    }
+    func addNotificationObserevers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // Do any additional setup after loading the view.
     }
-
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -49,26 +55,31 @@ class LoginViewController: UIViewController {
         if let info = notification.userInfo {
             let keyboardRect: CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
             if keyboardRect.height > 0 {
-                self.view.layoutIfNeeded()
+                //self.view.layoutIfNeeded()
                 let difference = loginBoxBottomConstraint.constant - (keyboardRect.height + registrationButton.frame.height + 25)
-                UIView.animate(withDuration: 0.3){
-                        if difference < 0 {
-                            self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder + abs(difference)
-                        }
-                        self.bottomRegistrationLostPasswordConstraint.constant = keyboardRect.height + 10
-                        self.view.layoutIfNeeded()
-                    }
+                if difference < 0 {
+                    self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder + abs(difference)
+                }
+                self.bottomRegistrationLostPasswordConstraint.constant = keyboardRect.height + 10
+//                UIView.animate(withDuration: 0.3){
+//                        self.view.layoutIfNeeded()
+//                    }
+                UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+                    self.view.layoutIfNeeded()
+                }, completion: nil)
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 1){
-            self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder
-            self.bottomRegistrationLostPasswordConstraint.constant = self.constraintRegButtonBottomHolder
+        self.bottomRegistrationLostPasswordConstraint.constant = self.constraintRegButtonBottomHolder
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
-            
+        }, completion: nil)
+        
+        self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder
+        UIView.animate(withDuration: 1){
+            self.view.layoutIfNeeded()
         }
     }
     func configureTapGesture() {
@@ -81,7 +92,9 @@ class LoginViewController: UIViewController {
     
     func loginButtonSetup(){
         loginButton.backgroundColor = UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0)
+        //loginButton.createGradientLayer(withRoundedCorners: false)
         loginButton.layer.cornerRadius = 7
+        loginButton.layer.masksToBounds = true
     }
     func textFieldsSetup(){
         loginTextField.delegate = self
@@ -105,18 +118,6 @@ class LoginViewController: UIViewController {
     @IBAction func registrationTapped(_ sender: Any) {
         view.endEditing(true)
     }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension LoginViewController: UITextFieldDelegate {

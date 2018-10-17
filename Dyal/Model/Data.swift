@@ -6,10 +6,14 @@
 //  Copyright © 2018 Арман. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class DataService {
+var imageDictionary = ["apple.jpg": UIImage(named: "apple.jpg"), "pineapple.jpg": UIImage(named: "pineapple.jpg"), "orange.jpg": UIImage(named: "orange.jpg"), "peach.jpg": UIImage(named: "peach.jpg"), "banana.jpg": UIImage(named: "banana.jpg"), "lemon.jpg": UIImage(named: "lemon.jpg")]
+
+final class DataService {
     static let instance = DataService()
+    
+    
     
     private(set) var foodArray = [
         foodItem(name: "Яблоко", imageName: "apple.jpg", potassium: 107, sodium: 1),

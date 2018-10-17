@@ -15,7 +15,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     var name: String!
     
-    var imageName: String!
+    var image: UIImage?
     
     var potassium: Float!
     
@@ -29,7 +29,7 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         textView.text = "  Натрий: \(String(sodium)) mg\n  Калий: \(String(potassium)) mg"
         detailsLabel.text = name
-        detailsImage.image = UIImage(named: imageName)
+        detailsImage.image = image
         detailsImage.layer.cornerRadius = 13
         detailsImage.layer.masksToBounds = true
     }

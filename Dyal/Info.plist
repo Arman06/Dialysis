@@ -23,9 +23,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Для добавления фото</string>
+	<string>For adding photo</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Для добавления фото</string>
+	<string>For app to use photos</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>For adding files</string>
+	<key>NSLocalizedDescription</key>
+	<string>pls</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Pls</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
