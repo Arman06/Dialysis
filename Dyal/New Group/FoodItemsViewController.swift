@@ -50,7 +50,7 @@ class FoodItemsViewController: UIViewController {
         foodCollection.delegate = self
         foodCollection.dataSource = self
         configureCollectionView(CGSize(width: view.frame.width, height: view.frame.height))
-        print(DataService.instance.getFood().last?.imageName)
+        print(DataService.instance.getFood().last?.imageName ?? "none")
         
     }
     
@@ -72,7 +72,7 @@ class FoodItemsViewController: UIViewController {
         layout.headerReferenceSize = CGSize(width: 55, height: 65)
         layout.scrollDirection = .vertical
         layout.itemSize = cellSize
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
+//        layout.sectionInset = UIEdgeInsets(top: 10, left: 1, bottom: 10, right: 1)
         layout.minimumLineSpacing = 20.0
         layout.minimumInteritemSpacing = 20.0
         layout.footerReferenceSize = CGSize(width: 59, height: 70)
@@ -93,12 +93,13 @@ class FoodItemsViewController: UIViewController {
 
 
     @IBAction func tapAddButton(_ sender: Any) {
-        print("tap")
+        //print("tap")
     }
     
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
     @IBAction func unwindwithDataTo(sender: UIStoryboardSegue) {
-        
+        print(DataService.instance.getFood().count)
+        print(foodCollection.numberOfItems(inSection: 0))
         if let sourceViewController = sender.source as? addViewController {
             nameRecieved = sourceViewController.namePassed
             print(nameRecieved ?? "none")
@@ -110,13 +111,13 @@ class FoodItemsViewController: UIViewController {
             
             DataService.instance.addFood(foodItem(name: nameRecieved ?? "NoName", imageName: "\(newImageCount) new image", potassium: Float(potassiumRecieved ?? "0") ?? 0, sodium: Float(sodiumRecieved  ?? "0") ?? 0))
             let index = IndexPath(row: DataService.instance.foodArray.count - 1, section: 0)
-//            foodCollection.insertItems(at: [index])
+            foodCollection.insertItems(at: [index])
             
             //print(sourceViewController.imageNewPassed ?? "none")
             print(DataService.instance.getFood().count)
             print(foodCollection.numberOfItems(inSection: 0))
 //            foodCollection.reloadItems(at: [index])
-            foodCollection.reloadData()
+//            foodCollection.reloadData()
             
             
         }
@@ -182,7 +183,7 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
         }
         if let image = cell.viewWithTag(15) as? UIImageView {
             image.image = imageDictionary[DataService.instance.getFood()[indexPath.row].imageName] as? UIImage
-            print(DataService.instance.getFood()[indexPath.row].imageName)
+            //print(DataService.instance.getFood()[indexPath.row].imageName)
         }
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 2, height: 15)

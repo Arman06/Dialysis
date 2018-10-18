@@ -43,13 +43,12 @@ class addViewController: UIViewController, UINavigationControllerDelegate {
         addNotificationObserevers()
         topStackViewConstraint.constant = view.frame.height / 15
         topStackViewConstraintConstantHolder = topStackViewConstraint.constant
-        imageNew.image = UIImage(named: DataService.instance.getFood()[0].imageName)
+        imageNew.image = UIImage(named: "Image-placeholder.jpg")
         imageNew.layer.cornerRadius = 13
         imageNew.layer.masksToBounds = true
-        addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
     }
 
-    @objc func addTapped(_ sender: UIButton) {
+    @IBAction func addTapped(_ sender: UIButton) {
         print("add tapped")
         imageNewPassed = imageNew.image
     }
@@ -93,68 +92,135 @@ class addViewController: UIViewController, UINavigationControllerDelegate {
     
     
     func pickImageControllerConfigure() {
-        
         DispatchQueue.main.async {
-
-            self.imagePicker.allowsEditing = true
             let actionSheet = UIAlertController(title: "Источник фото", message: "Выберите фото", preferredStyle: .actionSheet)
             actionSheet.addAction(UIAlertAction(title: "Камера", style: .default, handler: { (action: UIAlertAction) in
-                if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    self.imagePicker.sourceType = .camera
-                    self.imagePicker.showsCameraControls = true
+                let status = self.checkingCameraAuthStatus()
+                print("\(status)" + " ohohoho")
+                if status {
+                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        self.imagePicker.sourceType = .camera
+                        self.imagePicker.allowsEditing = true
+                        self.imagePicker.showsCameraControls = true
+                        self.imagePicker.delegate = self
+                        self.present(self.imagePicker, animated: true, completion: nil)
+                    }
+                }
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { (action: UIAlertAction) in
+                
+                if self.checkingAuthStatusPhotoLibrary() {
+                    self.imagePicker.sourceType = .photoLibrary
+                    self.imagePicker.allowsEditing = true
                     self.imagePicker.delegate = self
                     self.present(self.imagePicker, animated: true, completion: nil)
                 }
-                
-                
-            }))
-            actionSheet.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { (action: UIAlertAction) in
-                self.imagePicker.sourceType = .photoLibrary
-                self.imagePicker.delegate = self
-                self.present(self.imagePicker, animated: true, completion: nil)
             }))
             
             actionSheet.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
             actionSheet.popoverPresentationController?.sourceView = self.view
             actionSheet.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection()
             actionSheet.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-            
+            //DispatchQueue.main.async {
             self.present(actionSheet, animated: true, completion: nil)
+            
         }
+        
+       //}
         
     }
     
-    func checkingAuthStatusPhotoLibrary() {
-        let photoAuthorizationStatus =  PHPhotoLibrary.authorizationStatus()
-        if photoAuthorizationStatus == .authorized {
-            print("authorized")
-            pickImageControllerConfigure()
-        } else {
-            PHPhotoLibrary.requestAuthorization { (status:PHAuthorizationStatus) -> Void in
-                if status == .denied {
-                    print("denied in addViewController")
-                    
-                }
-                if status == .restricted {print("restricted in addViewController")}
-                if status == .authorized {self.pickImageControllerConfigure()}
+    func checkingCameraAuthStatus() -> Bool {
+        var status = false
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            print("authorized camera")
+            status = true
+        case .denied:
+            let alert = UIAlertController(title: "Нет доступа к камере", message: nil, preferredStyle: .alert)
+            status = false
+            let cancel = UIAlertAction(title: "Ок", style: .cancel)
+            alert.addAction(cancel)
+//            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+//            }
+        case .restricted:
+            status = false
+            let alert = UIAlertController(title: "Ограничен доступ к  камере", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Ок", style: .cancel)
+            alert.addAction(cancel)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
             }
             
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                if granted {
+                    status = true
+                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        DispatchQueue.main.async {
+                            self.imagePicker.sourceType = .camera
+                            self.imagePicker.allowsEditing = true
+                            self.imagePicker.showsCameraControls = true
+                            self.imagePicker.delegate = self
+                            self.present(self.imagePicker, animated: true, completion: nil)
+                        }
+                        
+                    }
+                } else {
+                    status = false
+                }
+            })
         }
+        return status
+
     }
     
-    
-    
-    
-    
-//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-//        if reason == .committed {
-//            print("hello")
-//        }
-//    }
+    func checkingAuthStatusPhotoLibrary() -> Bool {
+        var statusL = false
+        let photoAuthorizationStatus =  PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            print("authorized library")
+            statusL = true
+            //pickImageControllerConfigure()
+        case .denied:
+            let alert = UIAlertController(title: "Нет доступа к галерее", message: nil, preferredStyle: .alert)
+            statusL = false
+            let cancel = UIAlertAction(title: "Ок", style: .cancel)
+            alert.addAction(cancel)
+//            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+//            }
+        case .restricted:
+            statusL = false
+            let alert = UIAlertController(title: "Ограничен доступ к галерее", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Ок", style: .cancel)
+            alert.addAction(cancel)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
+            
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { (status) in
+                    if status == .authorized {
+                        DispatchQueue.main.async {
+                            self.imagePicker.sourceType = .photoLibrary
+                            self.imagePicker.allowsEditing = true
+                            self.imagePicker.delegate = self
+                            self.present(self.imagePicker, animated: true, completion: nil)
+                            statusL = true
+                        }
+                        
+                    }
+            }
+        }
+        return statusL
+    }
     
     @IBAction func pickImageTapped(_ sender: UIButton) {
         view.endEditing(true)
-        checkingAuthStatusPhotoLibrary()
+        pickImageControllerConfigure()
     }
 }
 
@@ -197,12 +263,9 @@ extension addViewController: UIImagePickerControllerDelegate {
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
             imageNew.image = editedImage
-            imageNewPassed = imageNew.image
         } else {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
                 imageNew.image = image
-                imageNewPassed = imageNew.image
-                
             }
         }
         self.dismiss(animated: true, completion: nil)
