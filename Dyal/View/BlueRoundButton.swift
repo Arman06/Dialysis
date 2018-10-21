@@ -20,7 +20,7 @@ class BlueRoundButton: UIButton {
             self.isSelected = false
             
         }
-        UIView.animate(withDuration: 0.03) {
+        UIView.animate(withDuration: 0.02) {
             self.isHighlighted = false
             self.transform = CGAffineTransform.identity
         }
@@ -35,7 +35,7 @@ class BlueRoundButton: UIButton {
             self.isSelected = false
 
         }
-        UIView.animate(withDuration: 0.03) {
+        UIView.animate(withDuration: 0.02) {
             self.isHighlighted = false
             self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }

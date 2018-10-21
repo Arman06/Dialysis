@@ -61,6 +61,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C2401718217CE5A50028F39D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C26995432097CBF900BE0829 /* FoodItemsViewController.swift */,
+				C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */,
+				C26E9483214FAB9500369C32 /* DetailsViewController.swift */,
+				C2A361E32098EF3A0036FD19 /* LoginViewController.swift */,
+				C2DC670C21722F34002DE74B /* RegistrationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C26995352097CBF900BE0829 = {
 			isa = PBXGroup;
 			children = (
@@ -83,10 +95,10 @@
 		C26995402097CBF900BE0829 /* Dyal */ = {
 			isa = PBXGroup;
 			children = (
+				C2401718217CE5A50028F39D /* Controller */,
 				C269954D2097CBF900BE0829 /* Info.plist */,
 				C2DC6712217272B0002DE74B /* Assistant */,
 				C2DC670E21727229002DE74B /* View */,
-				C2DC671021727265002DE74B /* ControllerGroup */,
 				C2DC67112172729D002DE74B /* Model */,
 				C252FE952177868C0092615E /* Model.xcdatamodeld */,
 			);
@@ -103,19 +115,6 @@
 				C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C2DC671021727265002DE74B /* ControllerGroup */ = {
-			isa = PBXGroup;
-			children = (
-				C26995432097CBF900BE0829 /* FoodItemsViewController.swift */,
-				C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */,
-				C26E9483214FAB9500369C32 /* DetailsViewController.swift */,
-				C2A361E32098EF3A0036FD19 /* LoginViewController.swift */,
-				C2DC670C21722F34002DE74B /* RegistrationViewController.swift */,
-			);
-			name = ControllerGroup;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		C2DC67112172729D002DE74B /* Model */ = {
