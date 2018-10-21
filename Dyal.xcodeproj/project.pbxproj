@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C21B430F214EB61300D4F2EE /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B430E214EB61300D4F2EE /* Data.swift */; };
+		C2401715217A36E40028F39D /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401714217A36E40028F39D /* FoodCell.swift */; };
+		C2401717217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */; };
 		C252FE94217767F00092615E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C252FE93217767F00092615E /* Extensions.swift */; };
 		C252FE972177868C0092615E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C252FE952177868C0092615E /* Model.xcdatamodeld */; };
 		C252FE992177B5400092615E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C252FE982177B5400092615E /* Global.swift */; };
@@ -22,11 +24,13 @@
 		C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A3F20B209B2F750067484B /* CustomUITextField.swift */; };
 		C2DC670B2171FB93002DE74B /* BlueRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */; };
 		C2DC670D21722F34002DE74B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC670C21722F34002DE74B /* RegistrationViewController.swift */; };
-		C2F81BC12158FE9B00B531B9 /* addViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F81BC02158FE9B00B531B9 /* addViewController.swift */; };
+		C2F81BC12158FE9B00B531B9 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C21B430E214EB61300D4F2EE /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		C2401714217A36E40028F39D /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHeaderFooterReusableView.swift; sourceTree = "<group>"; };
 		C252FE93217767F00092615E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C252FE962177868C0092615E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C252FE982177B5400092615E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -43,7 +47,7 @@
 		C2A3F20B209B2F750067484B /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
 		C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueRoundButton.swift; sourceTree = "<group>"; };
 		C2DC670C21722F34002DE74B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		C2F81BC02158FE9B00B531B9 /* addViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addViewController.swift; sourceTree = "<group>"; };
+		C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +86,7 @@
 				C269954D2097CBF900BE0829 /* Info.plist */,
 				C2DC6712217272B0002DE74B /* Assistant */,
 				C2DC670E21727229002DE74B /* View */,
-				C2DC671021727265002DE74B /* Controller */,
+				C2DC671021727265002DE74B /* ControllerGroup */,
 				C2DC67112172729D002DE74B /* Model */,
 				C252FE952177868C0092615E /* Model.xcdatamodeld */,
 			);
@@ -95,20 +99,22 @@
 				C26995452097CBF900BE0829 /* Main.storyboard */,
 				C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */,
 				C2A3F20B209B2F750067484B /* CustomUITextField.swift */,
+				C2401714217A36E40028F39D /* FoodCell.swift */,
+				C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		C2DC671021727265002DE74B /* Controller */ = {
+		C2DC671021727265002DE74B /* ControllerGroup */ = {
 			isa = PBXGroup;
 			children = (
 				C26995432097CBF900BE0829 /* FoodItemsViewController.swift */,
-				C2F81BC02158FE9B00B531B9 /* addViewController.swift */,
+				C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */,
 				C26E9483214FAB9500369C32 /* DetailsViewController.swift */,
 				C2A361E32098EF3A0036FD19 /* LoginViewController.swift */,
 				C2DC670C21722F34002DE74B /* RegistrationViewController.swift */,
 			);
-			name = Controller;
+			name = ControllerGroup;
 			path = "New Group";
 			sourceTree = "<group>";
 		};
@@ -205,13 +211,15 @@
 			files = (
 				C2A361E62099D3930036FD19 /* FoodItem.swift in Sources */,
 				C21B430F214EB61300D4F2EE /* Data.swift in Sources */,
-				C2F81BC12158FE9B00B531B9 /* addViewController.swift in Sources */,
+				C2F81BC12158FE9B00B531B9 /* AddFoodViewController.swift in Sources */,
 				C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */,
 				C2DC670D21722F34002DE74B /* RegistrationViewController.swift in Sources */,
 				C252FE992177B5400092615E /* Global.swift in Sources */,
 				C26995442097CBF900BE0829 /* FoodItemsViewController.swift in Sources */,
 				C2DC670B2171FB93002DE74B /* BlueRoundButton.swift in Sources */,
 				C26E9484214FAB9500369C32 /* DetailsViewController.swift in Sources */,
+				C2401715217A36E40028F39D /* FoodCell.swift in Sources */,
+				C2401717217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift in Sources */,
 				C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */,
 				C252FE94217767F00092615E /* Extensions.swift in Sources */,
 				C26995422097CBF900BE0829 /* AppDelegate.swift in Sources */,

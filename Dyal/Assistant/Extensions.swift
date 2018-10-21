@@ -26,7 +26,13 @@ extension UIView {
     }
 }
 
-
+extension UICollectionView {
+    func deselectAllItems(animated: Bool = false) {
+        for indexPath in self.indexPathsForSelectedItems ?? [] {
+            self.deselectItem(at: indexPath, animated: true)
+        }
+    }
+}
 
 
 extension FileManager {
@@ -34,3 +40,14 @@ extension FileManager {
         return FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     }
 }
+
+extension UIDevice {
+    static var isIPad: Bool {
+        return UIDevice().userInterfaceIdiom == .pad
+    }
+    static var IsPortrait: Bool  {
+        return UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height
+    }
+}
+
+

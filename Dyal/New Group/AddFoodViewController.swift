@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import PhotosUI
 
-class addViewController: UIViewController, UINavigationControllerDelegate {
+class AddFoodViewController: UIViewController, UINavigationControllerDelegate {
     
     
     var namePassed : String?
@@ -96,7 +96,6 @@ class addViewController: UIViewController, UINavigationControllerDelegate {
             let actionSheet = UIAlertController(title: "Источник фото", message: "Выберите фото", preferredStyle: .actionSheet)
             actionSheet.addAction(UIAlertAction(title: "Камера", style: .default, handler: { (action: UIAlertAction) in
                 let status = self.checkingCameraAuthStatus()
-                print("\(status)" + " ohohoho")
                 if status {
                     if UIImagePickerController.isSourceTypeAvailable(.camera) {
                         self.imagePicker.sourceType = .camera
@@ -224,7 +223,7 @@ class addViewController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
-extension addViewController: UITextFieldDelegate {
+extension AddFoodViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -256,7 +255,7 @@ extension addViewController: UITextFieldDelegate {
     
 }
 
-extension addViewController: UIImagePickerControllerDelegate {
+extension AddFoodViewController: UIImagePickerControllerDelegate {
     @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }

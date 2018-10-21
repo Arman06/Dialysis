@@ -43,6 +43,7 @@ class BlueRoundButton: UIButton {
     }
     
     
+    
     override func awakeFromNib() {
         self.showsTouchWhenHighlighted = false
         self.createGradientLayer(withRoundedCorners: true)
