@@ -15,7 +15,19 @@ final class DataService {
     
     
     
-    private(set) var foodArray = [
+    private var foodArray = [
+        FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
+        FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
+        FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
+        FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
+        FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
+        FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2),
+        FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
+        FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
+        FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
+        FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
+        FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
+        FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2),
         FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
         FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
         FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
@@ -34,10 +46,16 @@ final class DataService {
         foodArray.append(food)
     }
     
+    func addFood(at index: Int, _ food: FoodItem) {
+        foodArray.insert(food, at: index)
+    }
+    
     func removeFood(at index: Int) {
         foodArray.remove(at: index)
     }
     func getFood() -> [FoodItem] {
         return foodArray
     }
+    
+    
 }

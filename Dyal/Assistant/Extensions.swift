@@ -8,23 +8,23 @@
 
 import UIKit
 
-extension UIView {
-    func createGradientLayer(withRoundedCorners isRounded: Bool) {
-        var gradientLayer: CAGradientLayer!
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.bounds
-        if isRounded{
-            gradientLayer.cornerRadius = self.frame.height / 2
-        }
-        gradientLayer.colors = [UIColor(red:0.00, green:0.48, blue:1.00, alpha:1.0).cgColor,
-                                UIColor(red:0.00, green:0.54, blue:1.0, alpha: 1).cgColor,
-                                UIColor(red:0.00, green:0.60, blue:1.0, alpha: 1).cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0,y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1,y: 0.5)
-        gradientLayer.masksToBounds = true
-        self.layer.addSublayer(gradientLayer)
-    }
-}
+//extension UIView {
+//    func createGradientLayer(withRoundedCorners isRounded: Bool) {
+//        var gradientLayer: CAGradientLayer!
+//        gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = self.bounds
+//        if isRounded{
+//            gradientLayer.cornerRadius = self.frame.height / 2
+//        }
+//        gradientLayer.colors = [UIColor(red:0.00, green:0.40, blue:1.00, alpha:1.0).cgColor,
+//                                UIColor(red:0.00, green:0.54, blue:1.0, alpha: 1).cgColor,
+//                                UIColor(red:0.00, green:0.70, blue:1.0, alpha: 1).cgColor]
+//        gradientLayer.startPoint = CGPoint(x: 0,y: 0.5)
+//        gradientLayer.endPoint = CGPoint(x: 1,y: 0.5)
+//        gradientLayer.masksToBounds = true
+//        self.layer.addSublayer(gradientLayer)
+//    }
+//}
 
 extension UICollectionView {
     func deselectAllItems(animated: Bool = false) {

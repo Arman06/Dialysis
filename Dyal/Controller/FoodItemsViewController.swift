@@ -113,13 +113,18 @@ class FoodItemsViewController: UIViewController {
 
     @IBAction func tapAddButton(_ sender: Any) {
         if editMode {
-            if let selected = foodCollection.indexPathsForSelectedItems {
-                let items = selected.map {$0.item}.sorted().reversed()
-                for item in items {
-                    DataService.instance.removeFood(at: item)
+            for selectedItem in selectedItems {
+                if let selectedIndex = DataService.instance.getFood().firstIndex(of: selectedItem){
+                    DataService.instance.removeFood(at: selectedIndex)
+                     let index = IndexPath(row: selectedIndex, section: 0)
+                    foodCollection.deleteItems(at: [index])
                 }
+            }
+            print(DataService.instance.getFood().count)
+            if let selected = foodCollection.indexPathsForSelectedItems {
                 foodCollection.deleteItems(at: selected)
             }
+            foodCollection.numberOfItems(inSection: 0)
             turnEditMode("off")
         } else {
             performSegue(withIdentifier: "AddSegue", sender: sender)
@@ -139,17 +144,14 @@ class FoodItemsViewController: UIViewController {
             sodiumRecieved = sourceViewController.sodiumPassed
             potassiumRecieved = sourceViewController.potassiumPassed
             imageNewRecieved = sourceViewController.imageNewPassed
-            DataService.instance.addFood(FoodItem(name: nameRecieved ?? "NoName",
-                                                  image: imageNewRecieved ?? #imageLiteral(resourceName: "Image-placeholder"),
-                                                  potassium: Float(potassiumRecieved ?? "0") ?? 0,
-                                                  sodium: Float(sodiumRecieved  ?? "0") ?? 0))
+            DataService.instance.addFood(at: 0, FoodItem(name: nameRecieved ?? "NoName",
+                                                         image: imageNewRecieved ?? #imageLiteral(resourceName: "Image-placeholder"),
+                                                         potassium: Float(potassiumRecieved ?? "0") ?? 0,
+                                                         sodium: Float(sodiumRecieved  ?? "0") ?? 0))
             
-            let index = IndexPath(row: DataService.instance.foodArray.count - 1, section: 0)
+            let index = IndexPath(row: DataService.instance.getFood().count - 1, section: 0)
             foodCollection.insertItems(at: [index])
-            //print(sourceViewController.imageNewPassed ?? "none")
-            print(DataService.instance.getFood().count)
-            print(foodCollection.numberOfItems(inSection: 0))
-//            foodCollection.reloadData()
+            foodCollection.reloadItems(at: foodCollection.indexPathsForVisibleItems)
         }
     }
     
@@ -188,8 +190,6 @@ class FoodItemsViewController: UIViewController {
     }
     
 }
-
-
 
 
 
@@ -238,7 +238,7 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
                 headerView.addButton.setTitle("Добавить", for: .normal)
                 headerView.deleteDoneButton.setTitle("Удалить", for: .normal)
             }
-            
+            headerView.layoutIfNeeded()
             return headerView
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath as IndexPath)
@@ -257,10 +257,12 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
             cell.isSelected = true
             foodCollection.selectItem(at: indexPath, animated: true, scrollPosition: [])
         }
+        
         cell.name.text = DataService.instance.getFood()[indexPath.row].name
         cell.potassium.text = "K: \(DataService.instance.getFood()[indexPath.row].potassium)"
         cell.sodium.text = "Na: \(DataService.instance.getFood()[indexPath.row].sodium)"
         cell.image.image = DataService.instance.getFood()[indexPath.row].image
+        cell.layoutIfNeeded()
         return cell
     }
 }
