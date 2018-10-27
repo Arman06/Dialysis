@@ -12,10 +12,11 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginBoxBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var rightLoginBoxConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftLoginBoxConstraint: NSLayoutConstraint!
     @IBOutlet weak var registrationButton: UIButton!
     var constraintloginBoxBottomHolder: CGFloat = 0.0
     var constraintRegButtonBottomHolder: CGFloat = 0.0
-    
     @IBOutlet weak var bottomRegistrationLostPasswordConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
@@ -31,9 +32,17 @@ class LoginViewController: UIViewController {
         configureConstraints()
     }
     
-    
     func configureConstraints() {
         loginBoxBottomConstraint.constant = view.frame.height / 2.3
+        loginBox.translatesAutoresizingMaskIntoConstraints = false
+        if UIDevice.IsPortrait {
+            leftLoginBoxConstraint.constant = (view.frame.width - (view.frame.width * 0.85)) / 2
+            rightLoginBoxConstraint.constant = (view.frame.width - (view.frame.width * 0.85)) / 2
+        } else {
+            leftLoginBoxConstraint.constant = (view.frame.width - (view.frame.width * 0.5)) / 2
+            rightLoginBoxConstraint.constant = (view.frame.width - (view.frame.width * 0.5)) / 2
+        }
+        
         constraintloginBoxBottomHolder = loginBoxBottomConstraint.constant
         constraintRegButtonBottomHolder = bottomRegistrationLostPasswordConstraint.constant
     }
@@ -46,6 +55,13 @@ class LoginViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         loginBoxBottomConstraint.constant = size.height / 2.3
         constraintloginBoxBottomHolder = loginBoxBottomConstraint.constant
+        if UIDevice.IsPortrait {
+            leftLoginBoxConstraint.constant = (size.width - (size.width * 0.85)) / 2
+            rightLoginBoxConstraint.constant = (size.width - (size.width * 0.85)) / 2
+        } else {
+            leftLoginBoxConstraint.constant = (size.width - (size.width * 0.5)) / 2
+            rightLoginBoxConstraint.constant = (size.width - (size.width * 0.5)) / 2
+        }
     }
     
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
@@ -55,15 +71,11 @@ class LoginViewController: UIViewController {
         if let info = notification.userInfo {
             let keyboardRect: CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
             if keyboardRect.height > 0 {
-                //self.view.layoutIfNeeded()
                 let difference = loginBoxBottomConstraint.constant - (keyboardRect.height + registrationButton.frame.height + 25)
                 if difference < 0 {
                     self.loginBoxBottomConstraint.constant = self.constraintloginBoxBottomHolder + abs(difference)
                 }
                 self.bottomRegistrationLostPasswordConstraint.constant = keyboardRect.height + 10
-//                UIView.animate(withDuration: 0.3){
-//                        self.view.layoutIfNeeded()
-//                    }
                 UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
                     self.view.layoutIfNeeded()
                 }, completion: nil)

@@ -10,6 +10,7 @@
 		C21B430F214EB61300D4F2EE /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B430E214EB61300D4F2EE /* Data.swift */; };
 		C2401715217A36E40028F39D /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401714217A36E40028F39D /* FoodCell.swift */; };
 		C2401717217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */; };
+		C240171A2182090B0028F39D /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24017192182090B0028F39D /* CustomFlowLayout.swift */; };
 		C252FE94217767F00092615E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C252FE93217767F00092615E /* Extensions.swift */; };
 		C252FE972177868C0092615E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C252FE952177868C0092615E /* Model.xcdatamodeld */; };
 		C252FE992177B5400092615E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C252FE982177B5400092615E /* Global.swift */; };
@@ -31,6 +32,7 @@
 		C21B430E214EB61300D4F2EE /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C2401714217A36E40028F39D /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHeaderFooterReusableView.swift; sourceTree = "<group>"; };
+		C24017192182090B0028F39D /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
 		C252FE93217767F00092615E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C252FE962177868C0092615E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C252FE982177B5400092615E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C26995452097CBF900BE0829 /* Main.storyboard */,
+				C24017192182090B0028F39D /* CustomFlowLayout.swift */,
 				C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */,
 				C2A3F20B209B2F750067484B /* CustomUITextField.swift */,
 				C2401714217A36E40028F39D /* FoodCell.swift */,
@@ -210,6 +213,7 @@
 			files = (
 				C2A361E62099D3930036FD19 /* FoodItem.swift in Sources */,
 				C21B430F214EB61300D4F2EE /* Data.swift in Sources */,
+				C240171A2182090B0028F39D /* CustomFlowLayout.swift in Sources */,
 				C2F81BC12158FE9B00B531B9 /* AddFoodViewController.swift in Sources */,
 				C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */,
 				C2DC670D21722F34002DE74B /* RegistrationViewController.swift in Sources */,

@@ -67,31 +67,27 @@ class FoodItemsViewController: UIViewController {
     
     func configureCollectionView(_ size: CGSize) {
         var cellSize: CGSize
-        let layout = UICollectionViewFlowLayout()
+        let layout = CustomFlowLayout()
         print(UIDevice.IsPortrait ? "portrait oreintation":"landscape oreintation")
         print(UIDevice.isIPad ? "IPad": "IPhone")
         
         if UIDevice.IsPortrait {
             cellSize = CGSize(width: size.width - 45, height: size.height / 3)
+            layout.minimumLineSpacing = 25.0
+            layout.minimumInteritemSpacing = 20.0
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         } else {
-            cellSize = CGSize(width: size.width / 1.5, height: size.height / 1.8)
+            cellSize = CGSize(width: size.width / 2.5, height: size.width / 3.5)
+            layout.minimumLineSpacing = 25.0
+            layout.minimumInteritemSpacing = 0
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 60, bottom: 10, right: 60)
         }
-
         layout.headerReferenceSize = CGSize(width: 55, height: 65)
         layout.scrollDirection = .vertical
         layout.itemSize = cellSize
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        
-        layout.minimumLineSpacing = 20.0
-        layout.minimumInteritemSpacing = 20.0
         layout.footerReferenceSize = CGSize(width: 59, height: 70)
         foodCollection.setCollectionViewLayout(layout, animated: false)
-//        foodCollection.collectionViewLayout = layout
         foodCollection.reloadData()
-//        foodCollection.layoutIfNeeded()
-        
-        
-
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsSegue"{
@@ -113,23 +109,28 @@ class FoodItemsViewController: UIViewController {
 
     @IBAction func tapAddButton(_ sender: Any) {
         if editMode {
+            var index = [IndexPath]()
+            for selectedItem in selectedItems {
+                if let selectedIndex = DataService.instance.getFood().firstIndex(of: selectedItem){
+                    index.append(IndexPath(row: selectedIndex, section: 0))
+                }
+            }
             for selectedItem in selectedItems {
                 if let selectedIndex = DataService.instance.getFood().firstIndex(of: selectedItem){
                     DataService.instance.removeFood(at: selectedIndex)
-                     let index = IndexPath(row: selectedIndex, section: 0)
-                    foodCollection.deleteItems(at: [index])
                 }
             }
-            print(DataService.instance.getFood().count)
-            if let selected = foodCollection.indexPathsForSelectedItems {
-                foodCollection.deleteItems(at: selected)
-            }
-            foodCollection.numberOfItems(inSection: 0)
+            let layout = foodCollection?.collectionViewLayout as! CustomFlowLayout
+            layout.deletedItems = index
+                UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                    self.foodCollection.deleteItems(at: index)
+                }, completion: nil)
+            
+            
             turnEditMode("off")
         } else {
             performSegue(withIdentifier: "AddSegue", sender: sender)
         }
-        
     }
     
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
@@ -148,38 +149,44 @@ class FoodItemsViewController: UIViewController {
                                                          image: imageNewRecieved ?? #imageLiteral(resourceName: "Image-placeholder"),
                                                          potassium: Float(potassiumRecieved ?? "0") ?? 0,
                                                          sodium: Float(sodiumRecieved  ?? "0") ?? 0))
+            let index = IndexPath(row: 0, section: 0)
+            self.foodCollection.insertItems(at: [index])
             
-            let index = IndexPath(row: DataService.instance.getFood().count - 1, section: 0)
-            foodCollection.insertItems(at: [index])
-            foodCollection.reloadItems(at: foodCollection.indexPathsForVisibleItems)
+            
         }
     }
     
     
     func turnEditMode(_ state: String) {
         if state == "on" {
-            foodCollection.allowsMultipleSelection = true
             editMode = true
+            foodCollection.allowsMultipleSelection = true
+            foodCollection.deselectAllItems(animated: false)
+            foodCollection.turnEditModeOnForAllItems()
+//            foodCollection.reloadItems(at: foodCollection.indexPathsForVisibleItems)
+            foodCollection.reloadData()
         } else if state == "off" {
             editMode = false
             selectedItems.removeAll()
-            foodCollection.deselectAllItems(animated: true)
-            foodCollection.reloadData()
+            foodCollection.deselectAllItems(animated: false)
+            foodCollection.turnEditModeOffForAllItems()
             foodCollection.allowsMultipleSelection = false
-            
+//            foodCollection.reloadItems(at: foodCollection.indexPathsForVisibleItems)
+            foodCollection.reloadData()
         }
     }
     
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
         if editMode {
-            turnEditMode("off")
+            
             sender.setTitle("Удалить", for: .normal)
+            turnEditMode("off")
         } else {
-            turnEditMode("on")
+            
             sender.setTitle("Отмена", for: .normal)
+            turnEditMode("on")
         }
-        print(selectedItems)
     }
     
     
@@ -206,31 +213,54 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !editMode {
-            foodCollection.deselectItem(at: indexPath, animated: false)
+            let cell = foodCollection.cellForItem(at: indexPath) as? FoodCell
+            foodCollection.turnEditModeOff(at: indexPath)
+            cell?.isEditing = false
+            print(cell!.isEditing)
+            foodCollection.deselectAllVisibleItems(animated: false)
             performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
         } else {
-            if !selectedItems.contains(DataService.instance.getFood()[indexPath.row]){
-                selectedItems.append(DataService.instance.getFood()[indexPath.row])
-                print(selectedItems)
+            let cell = foodCollection.cellForItem(at: indexPath) as? FoodCell
+            foodCollection.turnEditModeOn(at: indexPath)
+            print(cell!.isEditing)
+                if !self.selectedItems.contains(DataService.instance.getFood()[indexPath.row]){
+                    self.selectedItems.append(DataService.instance.getFood()[indexPath.row])
+                    print(self.selectedItems)
             }
         }
     }
+//
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        if !editMode{
+//            cell.alpha = 0
+//            cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+//            //        let cellCenter = cell.center
+//            //        cell.center = CGPoint(x: cellCenter.x, y:  cell.center.y + 10)
+//            DispatchQueue.main.async {
+//                UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+//                    cell.transform = CGAffineTransform.identity
+//                    cell.alpha = 1
+//                    //                cell.center = cellCenter
+//                }, completion: nil)
+//            }
+//        }
+//
+//
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if editMode {
             selectedItems.removeAll { $0 == DataService.instance.getFood()[indexPath.row]}
             print(selectedItems)
         }
-
-
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! FoodHeaderFooterReusableView
-            print("view header")
-            headerView.label.text = "Еда"
+            print("render header")
+            headerView.label.text = DataService.instance.dateToString()
             if editMode {
                 headerView.addButton.setTitle("Удалить", for: .normal)
                 headerView.deleteDoneButton.setTitle("Отмена", for: .normal)
@@ -238,13 +268,10 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
                 headerView.addButton.setTitle("Добавить", for: .normal)
                 headerView.deleteDoneButton.setTitle("Удалить", for: .normal)
             }
-            headerView.layoutIfNeeded()
             return headerView
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath as IndexPath)
             return footerView
-            
-            
         default:
             assert(false, "Unexpected error with kind")
         }
@@ -253,16 +280,23 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodItem", for: indexPath) as! FoodCell
-        if selectedItems.contains(DataService.instance.getFood()[indexPath.row]) {
-            cell.isSelected = true
-            foodCollection.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        if editMode {
+            
+            cell.isEditing = true
+            foodCollection.turnEditModeOn(at: indexPath)
+            if selectedItems.contains(DataService.instance.getFood()[indexPath.row]) {
+                cell.isSelected = true
+                foodCollection.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            }
+        } else {
+            cell.isEditing = false
+            foodCollection.turnEditModeOff(at: indexPath)
         }
         
         cell.name.text = DataService.instance.getFood()[indexPath.row].name
         cell.potassium.text = "K: \(DataService.instance.getFood()[indexPath.row].potassium)"
         cell.sodium.text = "Na: \(DataService.instance.getFood()[indexPath.row].sodium)"
         cell.image.image = DataService.instance.getFood()[indexPath.row].image
-        cell.layoutIfNeeded()
         return cell
     }
 }

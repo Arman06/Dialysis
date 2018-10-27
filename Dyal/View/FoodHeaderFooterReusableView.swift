@@ -17,17 +17,19 @@ class FoodHeaderFooterReusableView: UICollectionReusableView {
     @IBAction func deleteDoneButtonPressed(_ sender: UIButton) {
         if sender.currentTitle == "Удалить" {
             addButton.setTitle("Удалить", for: .normal)
+            addButton.backgroundColor = #colorLiteral(red: 1, green: 0.3513356447, blue: 0.3235116899, alpha: 1)
             deleteDoneButton.setTitle("Отмена", for: .normal)
         } else {
             addButton.setTitle("Добавить", for: .normal)
+            addButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
             deleteDoneButton.setTitle("Удалить", for: .normal)
         }
     }
     
         @IBAction func addDeleteButtonPressedChange(_ sender: UIButton) {
-        print(sender.currentTitle == "Удалить")
         if sender.currentTitle == "Удалить" {
             addButton.setTitle("Добавить", for: .normal)
+            addButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
             deleteDoneButton.setTitle("Удалить", for: .normal)
         }
     }
