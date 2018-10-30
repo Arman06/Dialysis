@@ -116,9 +116,9 @@ class LoginViewController: UIViewController {
         loginBox.layer.cornerRadius = 10
         loginBox.layer.masksToBounds = true
         loginBox.layer.shadowColor = UIColor.black.cgColor
-        loginBox.layer.shadowOffset = CGSize(width: 2, height: 15)
+        loginBox.layer.shadowOffset = CGSize(width: 0, height: 10)
         loginBox.layer.shadowOpacity = 0.1
-        loginBox.layer.shadowRadius = 4.0
+        loginBox.layer.shadowRadius = 3.0
         loginBox.layer.masksToBounds = false
         loginBox.layer.backgroundColor = UIColor.white.cgColor
     }

@@ -17,6 +17,7 @@ class AddFoodViewController: UIViewController, UINavigationControllerDelegate {
     var sodiumPassed : String?
     var potassiumPassed : String?
     var imageNewPassed : UIImage?
+    var section: Int?
     
     @IBOutlet weak var outerStackView: UIStackView!
     @IBOutlet weak var topStackViewConstraint: NSLayoutConstraint!

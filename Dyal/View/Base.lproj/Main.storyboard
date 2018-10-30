@@ -111,17 +111,22 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3lj-6r-OCc">
-                                            <rect key="frame" x="27" y="15" width="266" height="30"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfM-Mg-4jn">
+                                            <rect key="frame" x="12" y="23" width="296" height="9"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3lj-6r-OCc">
+                                            <rect key="frame" x="22" y="12.5" width="276" height="30"/>
                                             <subviews>
-                                                <label opaque="NO" tag="25" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="y70-Qz-oW8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" tag="25" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999999999998" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y70-Qz-oW8">
+                                                    <rect key="frame" x="0.0" y="0.5" width="60.5" height="29"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaB-gm-zgb" customClass="BlueRoundButton" customModule="Dyal" customModuleProvider="target">
-                                                    <rect key="frame" x="79" y="0.0" width="85" height="30"/>
+                                                    <rect key="frame" x="87" y="0.0" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="kZI-dB-IxU"/>
                                                     </constraints>
@@ -131,7 +136,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vW1-Nm-2er" customClass="BlueRoundButton" customModule="Dyal" customModuleProvider="target">
-                                                    <rect key="frame" x="172" y="0.0" width="94" height="30"/>
+                                                    <rect key="frame" x="182" y="0.0" width="94" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="94" id="Mt7-Uh-0ve"/>
                                                         <constraint firstAttribute="height" constant="30" id="RdR-Rg-7pK"/>
@@ -145,12 +150,17 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="3lj-6r-OCc" secondAttribute="trailing" constant="19" id="Rbk-kl-Me8"/>
-                                        <constraint firstItem="3lj-6r-OCc" firstAttribute="top" secondItem="5GV-p3-vaz" secondAttribute="topMargin" constant="7" id="TT6-xn-nx8"/>
-                                        <constraint firstItem="3lj-6r-OCc" firstAttribute="leading" secondItem="5GV-p3-vaz" secondAttribute="leadingMargin" constant="19" id="mGi-oA-EJy"/>
+                                        <constraint firstAttribute="bottom" secondItem="JfM-Mg-4jn" secondAttribute="bottom" constant="23" id="Kfl-db-3N1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="3lj-6r-OCc" secondAttribute="trailing" constant="14" id="Rbk-kl-Me8"/>
+                                        <constraint firstAttribute="trailing" secondItem="JfM-Mg-4jn" secondAttribute="trailing" constant="12" id="baP-d0-K11"/>
+                                        <constraint firstItem="3lj-6r-OCc" firstAttribute="centerY" secondItem="5GV-p3-vaz" secondAttribute="centerY" id="fr4-Ib-aJN"/>
+                                        <constraint firstItem="3lj-6r-OCc" firstAttribute="leading" secondItem="5GV-p3-vaz" secondAttribute="leadingMargin" constant="14" id="mGi-oA-EJy"/>
+                                        <constraint firstItem="JfM-Mg-4jn" firstAttribute="leading" secondItem="5GV-p3-vaz" secondAttribute="leading" constant="12" id="onu-cs-f6y"/>
+                                        <constraint firstItem="JfM-Mg-4jn" firstAttribute="top" secondItem="5GV-p3-vaz" secondAttribute="top" constant="23" id="qTB-gf-wGb"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="addButton" destination="vW1-Nm-2er" id="XzI-Zx-Oin"/>
+                                        <outlet property="backgroundView" destination="JfM-Mg-4jn" id="9pu-5i-Pqe"/>
                                         <outlet property="deleteDoneButton" destination="DaB-gm-zgb" id="AiQ-dc-S2a"/>
                                         <outlet property="label" destination="y70-Qz-oW8" id="wII-OH-18A"/>
                                     </connections>
@@ -160,8 +170,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBr-hq-BgO">
-                                            <rect key="frame" x="155" y="10" width="65" height="30"/>
+                                            <rect key="frame" x="127.5" y="10" width="65" height="30"/>
                                             <state key="normal" title="В начало"/>
+                                            <connections>
+                                                <action selector="scrollToBegin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o5w-CP-wDV"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -173,12 +186,61 @@
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Y2A-Ma-KbE"/>
                                 </connections>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyD-lP-Mh7">
+                                <rect key="frame" x="0.0" y="20" width="320" height="90"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqb-T5-aPi">
+                                        <rect key="frame" x="11" y="12" width="298" height="66"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pUi-xx-KRX">
+                                        <rect key="frame" x="25" y="30" width="270" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" tag="25" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999403953552" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bg0-jm-8wZ">
+                                                <rect key="frame" x="0.0" y="0.5" width="60.5" height="29"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4p2-S6-H1O" customClass="BlueRoundButton" customModule="Dyal" customModuleProvider="target">
+                                                <rect key="frame" x="83" y="0.0" width="85" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="9z0-V7-its"/>
+                                                    <constraint firstAttribute="height" constant="30" id="v5C-Is-Cyr"/>
+                                                </constraints>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8H2-je-mz2" customClass="BlueRoundButton" customModule="Dyal" customModuleProvider="target">
+                                                <rect key="frame" x="176" y="0.0" width="94" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Azh-AM-uhK"/>
+                                                    <constraint firstAttribute="width" constant="94" id="d6v-uJ-hAM"/>
+                                                </constraints>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="pUi-xx-KRX" firstAttribute="leading" secondItem="zyD-lP-Mh7" secondAttribute="leading" constant="25" id="2L3-Uy-oCh"/>
+                                    <constraint firstAttribute="trailing" secondItem="pUi-xx-KRX" secondAttribute="trailing" constant="25" id="9IO-fC-YJm"/>
+                                    <constraint firstItem="vqb-T5-aPi" firstAttribute="leading" secondItem="zyD-lP-Mh7" secondAttribute="leading" constant="11" id="Isd-lB-HWn"/>
+                                    <constraint firstAttribute="bottom" secondItem="vqb-T5-aPi" secondAttribute="bottom" constant="12" id="JTD-ST-z8H"/>
+                                    <constraint firstAttribute="height" constant="90" id="WrN-Uc-Z94"/>
+                                    <constraint firstAttribute="trailing" secondItem="vqb-T5-aPi" secondAttribute="trailing" constant="11" id="bA1-zb-bEG"/>
+                                    <constraint firstItem="vqb-T5-aPi" firstAttribute="top" secondItem="zyD-lP-Mh7" secondAttribute="top" constant="12" id="ddJ-1l-qNJ"/>
+                                    <constraint firstItem="pUi-xx-KRX" firstAttribute="centerY" secondItem="zyD-lP-Mh7" secondAttribute="centerY" id="qWS-R8-tt5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BYg-lW-caY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3ns-hp-wj1"/>
+                            <constraint firstItem="zyD-lP-Mh7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="D9R-Gq-Pxv"/>
                             <constraint firstItem="BYg-lW-caY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="GNo-lu-UfX"/>
+                            <constraint firstItem="zyD-lP-Mh7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="W2x-rP-sdZ"/>
                             <constraint firstAttribute="trailing" secondItem="BYg-lW-caY" secondAttribute="trailing" id="dNr-qJ-qKN"/>
+                            <constraint firstItem="zyD-lP-Mh7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dSE-hF-utZ"/>
                             <constraint firstItem="BYg-lW-caY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mg5-b0-uSi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -186,13 +248,17 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="n7K-7W-7Ly"/>
                     <connections>
                         <outlet property="foodCollection" destination="BYg-lW-caY" id="JZl-BP-Mf9"/>
+                        <outlet property="headerAddButton" destination="8H2-je-mz2" id="qMw-eq-5F5"/>
+                        <outlet property="headerCustomView" destination="vqb-T5-aPi" id="I1N-UZ-gNx"/>
+                        <outlet property="headerDateLabel" destination="bg0-jm-8wZ" id="cQP-l6-p1U"/>
+                        <outlet property="headerDeleteButton" destination="4p2-S6-H1O" id="LMl-o4-vBJ"/>
                         <segue destination="ckU-Lx-wLc" kind="show" identifier="DetailsSegue" id="mwJ-5Q-XOZ"/>
                         <segue destination="NDq-YB-gqT" kind="show" identifier="AddSegue" id="SG1-ZC-YZi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1530" y="100"/>
+            <point key="canvasLocation" x="1530" y="99.295774647887328"/>
         </scene>
         <!--Add Food View Controller-->
         <scene sceneID="N4F-Q4-dvs">

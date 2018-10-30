@@ -22,7 +22,7 @@ class FoodCell: UICollectionViewCell {
         self.layer.cornerRadius = 20
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 2, height: 15)
+        self.layer.shadowOffset = CGSize(width: 0, height: 15)
         self.layer.shadowOpacity = 0.1
         self.layer.shadowRadius = 4.0
         self.layer.masksToBounds = false

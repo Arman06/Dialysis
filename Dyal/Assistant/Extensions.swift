@@ -46,27 +46,34 @@ extension UICollectionView {
     }
     
     func deselectAllItems(animated: Bool) {
-        for indexPath in 0...self.numberOfItems(inSection: 0) {
-            self.deselectItem(at: IndexPath(row: indexPath, section: 0), animated: animated)
-            if let cell = self.cellForItem(at: IndexPath(row: indexPath, section: 0)) as? FoodCell {
-               cell.isSelected = false
+        for section in 0...(self.numberOfSections - 1){
+            for indexPath in 0...self.numberOfItems(inSection: section) {
+                if let cell = self.cellForItem(at: IndexPath(row: indexPath, section: section)) as? FoodCell {
+                    cell.isSelected = false
+                }
+                deselectItem(at: IndexPath(row: indexPath, section: section), animated: false)
             }
         }
     }
     func turnEditModeOnForAllItems() {
-        for indexPath in 0...self.numberOfItems(inSection: 0) {
-            if let cell = self.cellForItem(at: IndexPath(row: indexPath, section: 0)) as? FoodCell {
-                cell.isEditing = true
+        for section in 0...(self.numberOfSections - 1) {
+            for indexPath in 0...self.numberOfItems(inSection: section) {
+                if let cell = self.cellForItem(at: IndexPath(row: indexPath, section: section)) as? FoodCell {
+                    cell.isEditing = true
+                }
             }
         }
     }
     
     func turnEditModeOffForAllItems() {
-        for indexPath in 0...self.numberOfItems(inSection: 0) {
-            if let cell = self.cellForItem(at: IndexPath(row: indexPath, section: 0)) as? FoodCell {
-                cell.isEditing = false
+        for section in 0...(self.numberOfSections - 1) {
+            for indexPath in 0...self.numberOfItems(inSection: section) {
+                if let cell = self.cellForItem(at: IndexPath(row: indexPath, section: section)) as? FoodCell {
+                    cell.isEditing = false
+                }
             }
         }
+        
     }
     
     func turnEditModeOffForAllVisibleItems() {
@@ -114,4 +121,27 @@ extension UIDevice {
     }
 }
 
+extension Date {
+    static var yesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date().noon)!
+    }
+    static var tomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: Date().noon)!
+    }
+    var dayBefore: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    var dayAfter: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    var month: Int {
+        return Calendar.current.component(.month,  from: self)
+    }
+    var isLastDayOfMonth: Bool {
+        return dayAfter.month != month
+    }
+}
 

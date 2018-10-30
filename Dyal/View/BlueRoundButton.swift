@@ -25,6 +25,8 @@ class BlueRoundButton: UIButton {
     }
     
     
+    var section: Int?
+    
     
     override func awakeFromNib() {
 //        self.showsTouchWhenHighlighted = false

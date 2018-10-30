@@ -8,52 +8,118 @@
 
 import UIKit
 
-var imageDictionary = ["apple.jpg": UIImage(named: "apple.jpg"), "pineapple.jpg": UIImage(named: "pineapple.jpg"), "orange.jpg": UIImage(named: "orange.jpg"), "peach.jpg": UIImage(named: "peach.jpg"), "banana.jpg": UIImage(named: "banana.jpg"), "lemon.jpg": UIImage(named: "lemon.jpg")]
-
 final class DataService {
     static let instance = DataService()
     
     private let currentDate = Date()
     
     
+    lazy private var indexArray = [0...3, 4...6, 7...11]
+    
+    lazy private var dateArray = Array(foodArray.keys)
+    
     
     lazy private var foodArray =
-   [currentDate:[FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
-        FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
-        FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
-        FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
-        FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
-        FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2),
-        FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
-        FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
-        FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
-        FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
-        FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
-        FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2)]]
+        [currentDate: [FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
+                        FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
+                        FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
+                        FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
+                        FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
+                        FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2),
+                        FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
+                        FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
+                        FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
+                        FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
+                        FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
+                        FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2)],
+         Date.yesterday:[FoodItem(name: "Яблоко", image: UIImage(named: "apple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 107, sodium: 1),
+                         FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
+                         FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
+                         FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0)],
+         Date.yesterday.dayBefore:[FoodItem(name: "Ананас", image: UIImage(named: "pineapple.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 109, sodium: 1),
+                                   FoodItem(name: "Апельсин", image: UIImage(named: "orange.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 181, sodium: 0),
+                                   FoodItem(name: "Персик", image: UIImage(named: "peach.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 190, sodium: 0),
+                                   FoodItem(name: "Банан", image: UIImage(named: "banana.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 358, sodium: 1),
+                                   FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2)]
+         ]
     
-    func addFood(_ food: FoodItem) {
-        foodArray[currentDate]?.append(food)
+//    func addFood(_ food: FoodItem) {
+//        foodArray.append(food)
+//    }
+//
+//    func addFood(at index: Int, _ food: FoodItem) {
+//        foodArray[currentDate].insert(food, at: index)
+//    }
+    
+    func addFood(at indexPath: IndexPath, _ food: FoodItem) {
+        foodArray[dateArray[indexPath.section]]!.insert(food, at: indexPath.row)
     }
     
-    func addFood(at index: Int, _ food: FoodItem) {
-        foodArray[currentDate]?.insert(food, at: index)
+//    func addFood(in section: Int, _ food: FoodItem) {
+//        addFood(at: indexArray[section].first!, food)
+//    }
+    
+    func removeFood(at indexPath: IndexPath) {
+        foodArray[dateArray[indexPath.section]]!.remove(at: indexPath.row)
     }
     
-    func removeFood(at index: Int) {
-        foodArray[currentDate]?.remove(at: index)
-    }
-    func getFood() -> [FoodItem] {
-        return foodArray[currentDate]!
+    func removeFood(_ array: [FoodItem]) -> [IndexPath] {
+        var index = [IndexPath]()
+        for selectedItem in array {
+            for date in dateArray {
+                if let selectedIndex = foodArray[date]!.firstIndex(of: selectedItem) {
+                    index.append(IndexPath(row: selectedIndex, section: dateArray.firstIndex(of: date)!))
+                }
+            }
+        }
+        
+        for selectedItem in array {
+            for date in dateArray {
+                if let selectedIndex = foodArray[date]!.firstIndex(of: selectedItem) {
+                    foodArray[date]!.remove(at: selectedIndex)
+                }
+            }
+        }
+        return index
+        
     }
     
+    func getFood() -> [Date:[FoodItem]] {
+        return foodArray
+    }
+    
+    func getDates() -> [Date] {
+        return dateArray
+    }
+    
+    func getFood(for section: Int) -> [FoodItem] {
+        return foodArray[dateArray[section]] ?? [FoodItem]()
+    }
+    
+    func getFood(for indexPath: IndexPath) -> FoodItem {
+        return foodArray[dateArray[indexPath.section]]![indexPath.row]
+    }
+    
+    func numberOfSections() -> Int {
+        return dateArray.count
+    }
+    
+    
+    func numberOfItemsInSection(_ section: Int) -> Int {
+        return getFood(for: section).count
+    }
     func checkDate() {
         
     }
     
-    func dateToString() -> String {
+    private func dateToString(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
-        return " \(dateFormatter.string(from: currentDate))"
+        return " \(dateFormatter.string(from: date))"
+    }
+    
+    func stringDateFor(for indexPath: IndexPath) -> String{
+        return dateToString(dateArray[indexPath.section])
     }
     
 }
