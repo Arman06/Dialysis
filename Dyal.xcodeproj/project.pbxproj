@@ -13,7 +13,7 @@
 		C2401717217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */; };
 		C240171A2182090B0028F39D /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24017192182090B0028F39D /* CustomFlowLayout.swift */; };
 		C252FE94217767F00092615E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C252FE93217767F00092615E /* Extensions.swift */; };
-		C252FE972177868C0092615E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C252FE952177868C0092615E /* Model.xcdatamodeld */; };
+		C252FE972177868C0092615E /* Dyalysis.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C252FE952177868C0092615E /* Dyalysis.xcdatamodeld */; };
 		C252FE992177B5400092615E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C252FE982177B5400092615E /* Global.swift */; };
 		C26995422097CBF900BE0829 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26995412097CBF900BE0829 /* AppDelegate.swift */; };
 		C26995442097CBF900BE0829 /* FoodItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26995432097CBF900BE0829 /* FoodItemsViewController.swift */; };
@@ -22,6 +22,9 @@
 		C269954C2097CBF900BE0829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */; };
 		C26E9484214FAB9500369C32 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26E9483214FAB9500369C32 /* DetailsViewController.swift */; };
 		C2760F33218C871E00F56E0A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2760F32218C871E00F56E0A /* ProfileViewController.swift */; };
+		C2760F3B218CB89A00F56E0A /* FoodItemData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2760F39218CB89A00F56E0A /* FoodItemData+CoreDataClass.swift */; };
+		C2760F3D218CC58400F56E0A /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2760F3C218CC58400F56E0A /* ResetPasswordViewController.swift */; };
+		C2760F3F218CCDA200F56E0A /* FoodItemData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2760F3E218CCDA200F56E0A /* FoodItemData+CoreDataProperties.swift */; };
 		C28B2FFF218B5EF2005FB3AC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B2FFE218B5EF2005FB3AC /* SearchViewController.swift */; };
 		C28B3001218B6215005FB3AC /* FoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B3000218B6215005FB3AC /* FoodTableViewCell.swift */; };
 		C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E32098EF3A0036FD19 /* LoginViewController.swift */; };
@@ -54,6 +57,9 @@
 		C26E9483214FAB9500369C32 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C2760F31218C693D00F56E0A /* Dyal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dyal.entitlements; sourceTree = "<group>"; };
 		C2760F32218C871E00F56E0A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Dyal/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		C2760F39218CB89A00F56E0A /* FoodItemData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FoodItemData+CoreDataClass.swift"; path = "/Users/arman/Documents/Dyal/Dyal/Model/FoodItemData+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		C2760F3C218CC58400F56E0A /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResetPasswordViewController.swift; path = Dyal/Controller/ResetPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
+		C2760F3E218CCDA200F56E0A /* FoodItemData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FoodItemData+CoreDataProperties.swift"; path = "/Users/arman/Documents/Dyal/Dyal/Model/FoodItemData+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		C28B2FFE218B5EF2005FB3AC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C28B3000218B6215005FB3AC /* FoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTableViewCell.swift; sourceTree = "<group>"; };
 		C2A361E32098EF3A0036FD19 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				C2760F32218C871E00F56E0A /* ProfileViewController.swift */,
+				C2760F3C218CC58400F56E0A /* ResetPasswordViewController.swift */,
 				C28B2FFE218B5EF2005FB3AC /* SearchViewController.swift */,
 				C26995432097CBF900BE0829 /* FoodItemsViewController.swift */,
 				C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */,
@@ -138,7 +145,7 @@
 				C2DC6712217272B0002DE74B /* Assistant */,
 				C2DC670E21727229002DE74B /* View */,
 				C2DC67112172729D002DE74B /* Model */,
-				C252FE952177868C0092615E /* Model.xcdatamodeld */,
+				C252FE952177868C0092615E /* Dyalysis.xcdatamodeld */,
 				C2EDA7A9218C5DA500C074BC /* GoogleService-Info.plist */,
 			);
 			path = Dyal;
@@ -161,6 +168,8 @@
 		C2DC67112172729D002DE74B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2760F39218CB89A00F56E0A /* FoodItemData+CoreDataClass.swift */,
+				C2760F3E218CCDA200F56E0A /* FoodItemData+CoreDataProperties.swift */,
 				C21B430E214EB61300D4F2EE /* Data.swift */,
 				C2A361E52099D3930036FD19 /* FoodItem.swift */,
 			);
@@ -310,14 +319,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2760F3B218CB89A00F56E0A /* FoodItemData+CoreDataClass.swift in Sources */,
 				C2A361E62099D3930036FD19 /* FoodItem.swift in Sources */,
 				C21B430F214EB61300D4F2EE /* Data.swift in Sources */,
+				C2760F3D218CC58400F56E0A /* ResetPasswordViewController.swift in Sources */,
 				C240171A2182090B0028F39D /* CustomFlowLayout.swift in Sources */,
 				C28B2FFF218B5EF2005FB3AC /* SearchViewController.swift in Sources */,
 				C2F81BC12158FE9B00B531B9 /* AddFoodViewController.swift in Sources */,
 				C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */,
 				C2DC670D21722F34002DE74B /* RegistrationViewController.swift in Sources */,
 				C252FE992177B5400092615E /* Global.swift in Sources */,
+				C2760F3F218CCDA200F56E0A /* FoodItemData+CoreDataProperties.swift in Sources */,
 				C26995442097CBF900BE0829 /* FoodItemsViewController.swift in Sources */,
 				C2760F33218C871E00F56E0A /* ProfileViewController.swift in Sources */,
 				C2DC670B2171FB93002DE74B /* BlueRoundButton.swift in Sources */,
@@ -327,7 +339,7 @@
 				C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */,
 				C252FE94217767F00092615E /* Extensions.swift in Sources */,
 				C26995422097CBF900BE0829 /* AppDelegate.swift in Sources */,
-				C252FE972177868C0092615E /* Model.xcdatamodeld in Sources */,
+				C252FE972177868C0092615E /* Dyalysis.xcdatamodeld in Sources */,
 				C28B3001218B6215005FB3AC /* FoodTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,13 +537,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C252FE952177868C0092615E /* Model.xcdatamodeld */ = {
+		C252FE952177868C0092615E /* Dyalysis.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				C252FE962177868C0092615E /* Model.xcdatamodel */,
 			);
 			currentVersion = C252FE962177868C0092615E /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			path = Dyalysis.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

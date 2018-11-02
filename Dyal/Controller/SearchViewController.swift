@@ -10,7 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    var searchFood = [FoodItem]()
+    var searchFood = [FoodItemData]()
     var searching = false
     
     @IBOutlet weak var foodSearchBar: UISearchBar!
@@ -20,10 +20,17 @@ class SearchViewController: UIViewController {
         foodTableView.delegate = self
         foodTableView.dataSource = self
         foodSearchBar.delegate = self
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        foodTableView.reloadData()
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,9 +44,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = foodTableView.dequeueReusableCell(withIdentifier: "foodSearchCell", for: indexPath) as! FoodTableViewCell
@@ -56,18 +60,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsSegue" {
-            if let destination = segue.destination as? DetailsViewController,
-                let indexPath = sender as? IndexPath {
-                destination.name = DataService.instance.getFood(for: indexPath).name
-                destination.image =  DataService.instance.getFood(for: indexPath).image
-                destination.potassium = DataService.instance.getFood(for: indexPath).potassium
-                destination.sodium = DataService.instance.getFood(for: indexPath).sodium
-            }
-        }
-        
-    }
+
     
     
     
@@ -77,7 +70,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchFood = DataService.instance.getFood().filter({
             String($0.sodium).prefix(searchText.count) == searchText ||
-            $0.name.prefix(searchText.count) == searchText ||
+                $0.name!.prefix(searchText.count) == searchText ||
                 String($0.potassium).prefix(searchText.count) == searchText})
         searching = true
         foodTableView.reloadData()
@@ -85,7 +78,6 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
-//        searchBar.text = ""
         foodSearchBar.endEditing(true)
         foodTableView.reloadData()
     }

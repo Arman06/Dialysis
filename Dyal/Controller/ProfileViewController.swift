@@ -11,18 +11,24 @@ import Firebase
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var potassiumLabel: UILabel!
+    @IBOutlet weak var sodiumLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var exitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Auth.auth().currentUser?.displayName)
         emailLabel.text = Auth.auth().currentUser?.email
         nameLabel.text = Auth.auth().currentUser?.displayName
+        
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        potassiumLabel.text = "Калий за сегодня: \(DataService.instance.allPotassium())"
+        sodiumLabel.text = "Натрий за сегодня: \(DataService.instance.allSodium())"
+    }
     @IBAction func exitButtonTapped(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()

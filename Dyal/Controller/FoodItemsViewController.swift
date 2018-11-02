@@ -12,7 +12,7 @@ import os.log
 class FoodItemsViewController: UIViewController {
     
     
-    var selectedItems = [FoodItem]()
+    var selectedItems = [FoodItemData]()
     var editMode = false
     var nameRecieved: String?
     var potassiumRecieved: String?
@@ -31,15 +31,7 @@ class FoodItemsViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     
     
-    private func saveFood() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(DataService.instance.getFood(), toFile: FoodItem.ArchiveURL.path)
-        
-        if isSuccessfulSave {
-            os_log("Food saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save food :(", log: OSLog.default, type: .error)
-        }
-    }
+    
     
     
   
@@ -59,7 +51,6 @@ class FoodItemsViewController: UIViewController {
         foodCollection.dataSource = self
         foodCollection.allowsSelection = true
         foodCollection.allowsMultipleSelection = false
-//        configureCustomHeader()
         configureCollectionView(CGSize(width: view.frame.width, height: view.frame.height))
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
@@ -67,19 +58,7 @@ class FoodItemsViewController: UIViewController {
         foodCollection.sendSubviewToBack(refreshControl)
     }
     
-//    func configureCustomHeader() {
-//        headerAddButton.setTitle("Добавить", for: .normal)
-//        headerAddButton.addTarget(self, action: #selector(tapAddCustomButton(_:)), for: .touchUpInside)
-//        headerDeleteButton.setTitle("Удалить", for: .normal)
-//        headerDeleteButton.addTarget(self, action: #selector(editCustomButtonTapped(_:)), for: .touchUpInside)
-//        headerCustomView.layer.cornerRadius = 10
-//        headerCustomView.layer.shadowColor = UIColor.black.cgColor
-//        headerCustomView.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        headerCustomView.layer.shadowOpacity = 0.3
-//        headerCustomView.layer.shadowRadius = 2.0
-//        headerCustomView.layer.masksToBounds = false
-//    }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil) { _ in
@@ -122,7 +101,11 @@ class FoodItemsViewController: UIViewController {
             if let destination = segue.destination as? DetailsViewController,
                 let indexPath = sender as? IndexPath {
                 destination.name = DataService.instance.getFood(for: indexPath).name
-                destination.image =  DataService.instance.getFood(for: indexPath).image
+                if let data = DataService.instance.getFood(for: indexPath).image as Data? {
+                    destination.image = UIImage(data: data)
+                } else {
+                    destination.image = #imageLiteral(resourceName: "Image-placeholder")
+                }
                 destination.potassium = DataService.instance.getFood(for: indexPath).potassium
                 destination.sodium = DataService.instance.getFood(for: indexPath).sodium
             }
@@ -166,68 +149,31 @@ class FoodItemsViewController: UIViewController {
         }
     }
     
-//    @objc func tapAddCustomButton(_ sender: Any) {
-//        if editMode {
-//            headerButtonsTitleSwapColorChange("off")
-//            var index = [IndexPath]()
-//            for selectedItem in selectedItems {
-//                if let selectedIndex = DataService.instance.getFood().firstIndex(of: selectedItem){
-//                    index.append(IndexPath(row: selectedIndex, section: 0))
-//                }
-//            }
-//            for selectedItem in selectedItems {
-//                if let selectedIndex = DataService.instance.getFood().firstIndex(of: selectedItem){
-//                    DataService.instance.removeFood(at: selectedIndex)
-//                }
-//            }
-//            let layout = foodCollection?.collectionViewLayout as! CustomFlowLayout
-//            layout.deletedItems = index
-//            UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
-//                self.foodCollection.deleteItems(at: index)
-//            }, completion: nil)
-//
-//
-//            turnEditMode("off")
-//        } else {
-////            performSegue(withIdentifier: "AddSegue", sender: sender)
-//        }
-//    }
+
     
     @IBAction func unwindTo(sender: UIStoryboardSegue) {}
     
     
     @IBAction func unwindwithDataTo(sender: UIStoryboardSegue) {
-        print(DataService.instance.getFood().count)
-        print(foodCollection.numberOfItems(inSection: 0))
         if let sourceViewController = sender.source as? AddFoodViewController {
             nameRecieved = sourceViewController.namePassed
-            print(nameRecieved ?? "none")
             sodiumRecieved = sourceViewController.sodiumPassed
             potassiumRecieved = sourceViewController.potassiumPassed
             imageNewRecieved = sourceViewController.imageNewPassed
             let sectionRecieved = sourceViewController.section
             let index = IndexPath(row: 0, section: sectionRecieved!)
-            DataService.instance.addFood(at: index, FoodItem(name: nameRecieved ?? "NoName",
-                                                                 image: imageNewRecieved ?? #imageLiteral(resourceName: "Image-placeholder"),
-                                                                 potassium: Float(potassiumRecieved ?? "0") ?? 0,
-                                                                 sodium: Float(sodiumRecieved  ?? "0") ?? 0))
+            DataService.instance.addFood(at: index, FoodItem(name: nameRecieved ?? "Без имени",
+                                                             image: imageNewRecieved ?? #imageLiteral(resourceName: "Image-placeholder"),
+                                                             potassium: Float(potassiumRecieved ?? "0") ?? 0,
+                                                             sodium: Float(sodiumRecieved  ?? "0") ?? 0,
+                                                             date: DataService.instance.currentDate))
             self.foodCollection.insertItems(at: [index])
             
             
         }
     }
     
-//    func headerButtonsTitleSwapColorChange(_ state: String) {
-//        if state == "off" {
-//            headerAddButton.setTitle("Добавить", for: .normal)
-//            headerAddButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
-//            headerDeleteButton.setTitle("Удалить", for: .normal)
-//        } else if state == "on" {
-//            headerDeleteButton.setTitle("Отмена", for: .normal)
-//            headerAddButton.setTitle("Удалить", for: .normal)
-//            headerAddButton.backgroundColor = #colorLiteral(red: 1, green: 0.3513356447, blue: 0.3235116899, alpha: 1)
-//        }
-//    }
+
     
     func turnEditMode(_ state: String) {
         if state == "on" {
@@ -235,7 +181,6 @@ class FoodItemsViewController: UIViewController {
             foodCollection.allowsMultipleSelection = true
             foodCollection.deselectAllItems(animated: false)
             foodCollection.turnEditModeOnForAllItems()
-//            foodCollection.reloadItems(at: foodCollection.indexPathsForVisibleItems)
             foodCollection.reloadData()
         } else if state == "off" {
             editMode = false
@@ -243,7 +188,6 @@ class FoodItemsViewController: UIViewController {
             foodCollection.deselectAllItems(animated: false)
             foodCollection.turnEditModeOffForAllItems()
             foodCollection.allowsMultipleSelection = false
-//            foodCollection.reloadItems(at: foodCollection.indexPathsForVisibleItems)
             foodCollection.reloadData()
         }
     }
@@ -261,22 +205,11 @@ class FoodItemsViewController: UIViewController {
         }
     }
     
-//    @objc func editCustomButtonTapped(_ sender: UIButton) {
-//        if editMode {
-//            headerButtonsTitleSwapColorChange("off")
-//            turnEditMode("off")
-//        } else {
-//            headerButtonsTitleSwapColorChange("on")
-//            turnEditMode("on")
-//        }
-//    }
+
     
     
     
-    
-    private func loadFood() -> [FoodItem]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: FoodItem.ArchiveURL.path) as? [FoodItem]
-    }
+  
     
 }
 
@@ -341,7 +274,7 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
                 headerView.deleteDoneButton.setTitle("Отмена", for: .normal)
                 headerView.addButton.backgroundColor = #colorLiteral(red: 1, green: 0.3513356447, blue: 0.3235116899, alpha: 1)
             } else {
-                print("delete 5")
+
                 headerView.addButton.setTitle("Добавить", for: .normal)
                 headerView.deleteDoneButton.setTitle("Удалить", for: .normal)
                 headerView.addButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
@@ -350,9 +283,6 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
             return headerView
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath as IndexPath)
-//            headerDateLabel.text = String(indexPath.section + 1)
-
-//            headerDateLabel.text = String(indexPath.section)
             return footerView
         default:
             assert(false, "Unexpected error with kind")
@@ -377,7 +307,12 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
         cell.name.text = DataService.instance.getFood(for: indexPath).name
         cell.potassium.text = "K: \(DataService.instance.getFood(for: indexPath).potassium)"
         cell.sodium.text = "Na: \(DataService.instance.getFood(for: indexPath).sodium)"
-        cell.image.image = DataService.instance.getFood(for: indexPath).image
+        if let data = DataService.instance.getFood(for: indexPath).image as Data? {
+            cell.image.image = UIImage(data: data)
+        } else {
+            cell.image.image = #imageLiteral(resourceName: "Image-placeholder")
+        }
+        
         return cell
     }
     

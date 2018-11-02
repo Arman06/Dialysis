@@ -51,6 +51,7 @@ class AddFoodViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBAction func addTapped(_ sender: UIButton) {
         print("add tapped")
+        view.endEditing(true)
         imageNewPassed = imageNew.image
     }
     
