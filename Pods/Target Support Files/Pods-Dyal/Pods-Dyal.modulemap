@@ -1,0 +1,6 @@
+framework module Pods_Dyal {
+  umbrella header "Pods-Dyal-umbrella.h"
+
+  export *
+  module * { export * }
+}

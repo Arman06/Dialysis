@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A7C71299A8C3CF191DACDAD /* Pods_Dyal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D76155ED63B7852ABC757EF /* Pods_Dyal.framework */; };
 		C21B430F214EB61300D4F2EE /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21B430E214EB61300D4F2EE /* Data.swift */; };
 		C2401715217A36E40028F39D /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401714217A36E40028F39D /* FoodCell.swift */; };
 		C2401717217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */; };
@@ -20,15 +21,22 @@
 		C26995492097CBF900BE0829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26995482097CBF900BE0829 /* Assets.xcassets */; };
 		C269954C2097CBF900BE0829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */; };
 		C26E9484214FAB9500369C32 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26E9483214FAB9500369C32 /* DetailsViewController.swift */; };
+		C2760F33218C871E00F56E0A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2760F32218C871E00F56E0A /* ProfileViewController.swift */; };
+		C28B2FFF218B5EF2005FB3AC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B2FFE218B5EF2005FB3AC /* SearchViewController.swift */; };
+		C28B3001218B6215005FB3AC /* FoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B3000218B6215005FB3AC /* FoodTableViewCell.swift */; };
 		C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E32098EF3A0036FD19 /* LoginViewController.swift */; };
 		C2A361E62099D3930036FD19 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A361E52099D3930036FD19 /* FoodItem.swift */; };
 		C2A3F20C209B2F750067484B /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A3F20B209B2F750067484B /* CustomUITextField.swift */; };
 		C2DC670B2171FB93002DE74B /* BlueRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */; };
 		C2DC670D21722F34002DE74B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC670C21722F34002DE74B /* RegistrationViewController.swift */; };
+		C2EDA7AA218C5DA600C074BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2EDA7A9218C5DA500C074BC /* GoogleService-Info.plist */; };
 		C2F81BC12158FE9B00B531B9 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D6558A8AEEBDCF8020D7155 /* Pods-Dyal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dyal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dyal/Pods-Dyal.debug.xcconfig"; sourceTree = "<group>"; };
+		6D76155ED63B7852ABC757EF /* Pods_Dyal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dyal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77ECAEA47250826A0E3A15D4 /* Pods-Dyal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dyal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dyal/Pods-Dyal.release.xcconfig"; sourceTree = "<group>"; };
 		C21B430E214EB61300D4F2EE /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C2401714217A36E40028F39D /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHeaderFooterReusableView.swift; sourceTree = "<group>"; };
@@ -44,11 +52,16 @@
 		C269954B2097CBF900BE0829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C269954D2097CBF900BE0829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C26E9483214FAB9500369C32 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		C2760F31218C693D00F56E0A /* Dyal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dyal.entitlements; sourceTree = "<group>"; };
+		C2760F32218C871E00F56E0A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Dyal/Controller/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
+		C28B2FFE218B5EF2005FB3AC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C28B3000218B6215005FB3AC /* FoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTableViewCell.swift; sourceTree = "<group>"; };
 		C2A361E32098EF3A0036FD19 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C2A361E52099D3930036FD19 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		C2A3F20B209B2F750067484B /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
 		C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueRoundButton.swift; sourceTree = "<group>"; };
 		C2DC670C21722F34002DE74B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		C2EDA7A9218C5DA500C074BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,15 +70,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7C71299A8C3CF191DACDAD /* Pods_Dyal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D486879E43E4EB40FD197D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D6558A8AEEBDCF8020D7155 /* Pods-Dyal.debug.xcconfig */,
+				77ECAEA47250826A0E3A15D4 /* Pods-Dyal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3306ABB6F9298320197BDE97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D76155ED63B7852ABC757EF /* Pods_Dyal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C2401718217CE5A50028F39D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C2760F32218C871E00F56E0A /* ProfileViewController.swift */,
+				C28B2FFE218B5EF2005FB3AC /* SearchViewController.swift */,
 				C26995432097CBF900BE0829 /* FoodItemsViewController.swift */,
 				C2F81BC02158FE9B00B531B9 /* AddFoodViewController.swift */,
 				C26E9483214FAB9500369C32 /* DetailsViewController.swift */,
@@ -83,6 +116,8 @@
 				C269954A2097CBF900BE0829 /* LaunchScreen.storyboard */,
 				C26995482097CBF900BE0829 /* Assets.xcassets */,
 				C269953F2097CBF900BE0829 /* Products */,
+				1D486879E43E4EB40FD197D5 /* Pods */,
+				3306ABB6F9298320197BDE97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +132,14 @@
 		C26995402097CBF900BE0829 /* Dyal */ = {
 			isa = PBXGroup;
 			children = (
+				C2760F31218C693D00F56E0A /* Dyal.entitlements */,
 				C2401718217CE5A50028F39D /* Controller */,
 				C269954D2097CBF900BE0829 /* Info.plist */,
 				C2DC6712217272B0002DE74B /* Assistant */,
 				C2DC670E21727229002DE74B /* View */,
 				C2DC67112172729D002DE74B /* Model */,
 				C252FE952177868C0092615E /* Model.xcdatamodeld */,
+				C2EDA7A9218C5DA500C074BC /* GoogleService-Info.plist */,
 			);
 			path = Dyal;
 			sourceTree = "<group>";
@@ -115,6 +152,7 @@
 				C2DC670A2171FB92002DE74B /* BlueRoundButton.swift */,
 				C2A3F20B209B2F750067484B /* CustomUITextField.swift */,
 				C2401714217A36E40028F39D /* FoodCell.swift */,
+				C28B3000218B6215005FB3AC /* FoodTableViewCell.swift */,
 				C2401716217BB8BB0028F39D /* FoodHeaderFooterReusableView.swift */,
 			);
 			path = View;
@@ -145,9 +183,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C26995502097CBF900BE0829 /* Build configuration list for PBXNativeTarget "Dyal" */;
 			buildPhases = (
+				4F8DA6DE423F366E1F0F389C /* [CP] Check Pods Manifest.lock */,
 				C269953A2097CBF900BE0829 /* Sources */,
 				C269953B2097CBF900BE0829 /* Frameworks */,
 				C269953C2097CBF900BE0829 /* Resources */,
+				45FAC04B72C6CBF669C5F07B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -172,6 +212,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -199,12 +244,66 @@
 			buildActionMask = 2147483647;
 			files = (
 				C269954C2097CBF900BE0829 /* LaunchScreen.storyboard in Resources */,
+				C2EDA7AA218C5DA600C074BC /* GoogleService-Info.plist in Resources */,
 				C26995492097CBF900BE0829 /* Assets.xcassets in Resources */,
 				C26995472097CBF900BE0829 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45FAC04B72C6CBF669C5F07B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Dyal/Pods-Dyal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dyal/Pods-Dyal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F8DA6DE423F366E1F0F389C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dyal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C269953A2097CBF900BE0829 /* Sources */ = {
@@ -214,11 +313,13 @@
 				C2A361E62099D3930036FD19 /* FoodItem.swift in Sources */,
 				C21B430F214EB61300D4F2EE /* Data.swift in Sources */,
 				C240171A2182090B0028F39D /* CustomFlowLayout.swift in Sources */,
+				C28B2FFF218B5EF2005FB3AC /* SearchViewController.swift in Sources */,
 				C2F81BC12158FE9B00B531B9 /* AddFoodViewController.swift in Sources */,
 				C2A361E42098EF3A0036FD19 /* LoginViewController.swift in Sources */,
 				C2DC670D21722F34002DE74B /* RegistrationViewController.swift in Sources */,
 				C252FE992177B5400092615E /* Global.swift in Sources */,
 				C26995442097CBF900BE0829 /* FoodItemsViewController.swift in Sources */,
+				C2760F33218C871E00F56E0A /* ProfileViewController.swift in Sources */,
 				C2DC670B2171FB93002DE74B /* BlueRoundButton.swift in Sources */,
 				C26E9484214FAB9500369C32 /* DetailsViewController.swift in Sources */,
 				C2401715217A36E40028F39D /* FoodCell.swift in Sources */,
@@ -227,6 +328,7 @@
 				C252FE94217767F00092615E /* Extensions.swift in Sources */,
 				C26995422097CBF900BE0829 /* AppDelegate.swift in Sources */,
 				C252FE972177868C0092615E /* Model.xcdatamodeld in Sources */,
+				C28B3001218B6215005FB3AC /* FoodTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +467,10 @@
 		};
 		C26995512097CBF900BE0829 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D6558A8AEEBDCF8020D7155 /* Pods-Dyal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dyal/Dyal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2FJJ3BHAZ;
 				INFOPLIST_FILE = Dyal/Info.plist;
@@ -381,8 +485,10 @@
 		};
 		C26995522097CBF900BE0829 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77ECAEA47250826A0E3A15D4 /* Pods-Dyal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dyal/Dyal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2FJJ3BHAZ;
 				INFOPLIST_FILE = Dyal/Info.plist;

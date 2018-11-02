@@ -8,8 +8,22 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+import Firebase
 
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
+
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    var name = String()
+    
+    var email = String()
+    
+    var password = String()
+    
     var nextButtonAfterConstraint: CGFloat = 0.0
     
     @IBOutlet weak var nextButtonBottomConstraint: NSLayoutConstraint!
@@ -17,6 +31,9 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTapGesture()
+        emailTextField.delegate = self
+        nameTextField.delegate = self
+        passwordTextField.delegate = self
         nextButtonAfterConstraint = nextButtonBottomConstraint.constant
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -50,5 +67,78 @@ class RegistrationViewController: UIViewController {
         view.endEditing(true)
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == nameTextField {
+            name = textField.text ?? ""
+        }
+        if textField == emailTextField {
+            email = textField.text ?? ""
+        }
+        
+        if textField == passwordTextField {
+            password = textField.text ?? ""
+        }
+        
+    }
+    
+    
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
+        view.endEditing(true)
+        if email != "", name != "", password != "" {
+            Auth.auth().createUser(withEmail: email, password: password) {
+                (user, error) in
+                if error != nil {
+                    if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                        switch errorCode {
+                        case .weakPassword:
+                            let alert = UIAlertController(title: "Легкий пароль", message: nil, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "Окей", style: .cancel, handler: nil)
+                            alert.addAction(action)
+                            self.present(alert, animated: true)
+                        default:
+                            print("There is an error")
+                        }
+                    }
+                }
+                if user != nil, user?.user.isEmailVerified == false {
+                    user?.user.sendEmailVerification{ (error) in
+                        print(error?.localizedDescription ?? "none")
+                        let alert = UIAlertController(title: "Ошибка", message: nil, preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Окей", style: .cancel, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert, animated: true)
+                    }
+                    Auth.auth().signIn(withEmail: self.email, password: self.password)
+                    let changeRequest = user?.user.createProfileChangeRequest()
+                    changeRequest?.displayName = self.name
+                    changeRequest?.commitChanges(completion: { (error) in
+                        guard error == nil else {
+                            let alert = UIAlertController(title: "Ошибка", message: nil, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "Окей", style: .cancel, handler: nil)
+                            alert.addAction(action)
+                            self.present(alert, animated: true)
+                            return
+                        }
+                    })
+                    self.performSegue(withIdentifier: "LogInFromRegistration", sender: nil)
+                    
+                }
+            }
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Проверьте поля регистрации", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Окей", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        }
+
+        
+        
+    }
     
 }

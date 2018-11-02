@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
+    
+    var password = String()
+    var email = String()
+    
+    
     @IBOutlet weak var loginBoxBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var rightLoginBoxConstraint: NSLayoutConstraint!
@@ -19,7 +25,7 @@ class LoginViewController: UIViewController {
     var constraintRegButtonBottomHolder: CGFloat = 0.0
     @IBOutlet weak var bottomRegistrationLostPasswordConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var loginBox: UIView!
     override func viewDidLoad() {
@@ -30,6 +36,12 @@ class LoginViewController: UIViewController {
         configureTapGesture()
         addNotificationObserevers()
         configureConstraints()
+        let listener = Auth.auth().addStateDidChangeListener { (auth, user) in
+                if user != nil {
+                    self.performSegue(withIdentifier: "LogInSegue", sender: nil)
+                }
+            }
+
     }
     
     func configureConstraints() {
@@ -109,7 +121,7 @@ class LoginViewController: UIViewController {
         loginButton.layer.masksToBounds = true
     }
     func textFieldsSetup(){
-        loginTextField.delegate = self
+        emailTextField.delegate = self
         passwordTextField.delegate = self
     }
     func loginBoxSetup(){
@@ -124,6 +136,19 @@ class LoginViewController: UIViewController {
     }
     @IBAction func loginTapped(_ sender: Any) {
         view.endEditing(true)
+//        Auth.auth().signIn(withEmail: email, password: password)
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "none")
+                let alert = UIAlertController(title: "Ошибка", message: "Проверьте email и пароль", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Окей", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            } else {
+                self.performSegue(withIdentifier: "LogInSegue", sender: sender)
+            }
+            
+        }
     }
     
     
@@ -136,5 +161,14 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            email = textField.text ?? ""
+        }
+        if textField == passwordTextField {
+            password = textField.text ?? ""
+        }
     }
 }

@@ -43,7 +43,15 @@ class FoodItemsViewController: UIViewController {
     
     
   
-
+    @objc func didRefresh() {
+        guard let collectionView = foodCollection,
+            let refreshControl = collectionView.refreshControl else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            refreshControl.endRefreshing()
+           
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,23 +59,26 @@ class FoodItemsViewController: UIViewController {
         foodCollection.dataSource = self
         foodCollection.allowsSelection = true
         foodCollection.allowsMultipleSelection = false
-        configureCustomHeader()
+//        configureCustomHeader()
         configureCollectionView(CGSize(width: view.frame.width, height: view.frame.height))
-        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+        foodCollection.refreshControl = refreshControl
+        foodCollection.sendSubviewToBack(refreshControl)
     }
     
-    func configureCustomHeader() {
-        headerAddButton.setTitle("Добавить", for: .normal)
+//    func configureCustomHeader() {
+//        headerAddButton.setTitle("Добавить", for: .normal)
 //        headerAddButton.addTarget(self, action: #selector(tapAddCustomButton(_:)), for: .touchUpInside)
-        headerDeleteButton.setTitle("Удалить", for: .normal)
-        headerDeleteButton.addTarget(self, action: #selector(editCustomButtonTapped(_:)), for: .touchUpInside)
-        headerCustomView.layer.cornerRadius = 10
-        headerCustomView.layer.shadowColor = UIColor.black.cgColor
-        headerCustomView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        headerCustomView.layer.shadowOpacity = 0.3
-        headerCustomView.layer.shadowRadius = 2.0
-        headerCustomView.layer.masksToBounds = false
-    }
+//        headerDeleteButton.setTitle("Удалить", for: .normal)
+//        headerDeleteButton.addTarget(self, action: #selector(editCustomButtonTapped(_:)), for: .touchUpInside)
+//        headerCustomView.layer.cornerRadius = 10
+//        headerCustomView.layer.shadowColor = UIColor.black.cgColor
+//        headerCustomView.layer.shadowOffset = CGSize(width: 0, height: 0)
+//        headerCustomView.layer.shadowOpacity = 0.3
+//        headerCustomView.layer.shadowRadius = 2.0
+//        headerCustomView.layer.masksToBounds = false
+//    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -133,11 +144,13 @@ class FoodItemsViewController: UIViewController {
             let index = DataService.instance.removeFood(selectedItems)
             let layout = foodCollection?.collectionViewLayout as! CustomFlowLayout
             layout.deletedItems = index
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            
+                UIView.animate(withDuration: 0.4 , delay: 0, options: .curveEaseInOut, animations: {
                     self.foodCollection.deleteItems(at: index)
                     sender.setTitle("Добавить", for: .normal)
                     sender.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
                 }, completion: nil)
+            
             let headers = foodCollection.visibleSupplementaryViews(ofKind:  UICollectionView.elementKindSectionHeader)
             for header in headers {
                 if let headerView = header as? FoodHeaderFooterReusableView {
@@ -145,7 +158,7 @@ class FoodItemsViewController: UIViewController {
                     headerView.deleteDoneButton.setTitle("Удалить", for: .normal)
                     headerView.addButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
                 }
-                }
+            }
                 
             turnEditMode("off")
         } else {
@@ -204,17 +217,17 @@ class FoodItemsViewController: UIViewController {
         }
     }
     
-    func headerButtonsTitleSwapColorChange(_ state: String) {
-        if state == "off" {
-            headerAddButton.setTitle("Добавить", for: .normal)
-            headerAddButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
-            headerDeleteButton.setTitle("Удалить", for: .normal)
-        } else if state == "on" {
-            headerDeleteButton.setTitle("Отмена", for: .normal)
-            headerAddButton.setTitle("Удалить", for: .normal)
-            headerAddButton.backgroundColor = #colorLiteral(red: 1, green: 0.3513356447, blue: 0.3235116899, alpha: 1)
-        }
-    }
+//    func headerButtonsTitleSwapColorChange(_ state: String) {
+//        if state == "off" {
+//            headerAddButton.setTitle("Добавить", for: .normal)
+//            headerAddButton.backgroundColor = UIColor(red:0.00, green:0.55, blue:1.0, alpha: 1)
+//            headerDeleteButton.setTitle("Удалить", for: .normal)
+//        } else if state == "on" {
+//            headerDeleteButton.setTitle("Отмена", for: .normal)
+//            headerAddButton.setTitle("Удалить", for: .normal)
+//            headerAddButton.backgroundColor = #colorLiteral(red: 1, green: 0.3513356447, blue: 0.3235116899, alpha: 1)
+//        }
+//    }
     
     func turnEditMode(_ state: String) {
         if state == "on" {
@@ -248,15 +261,15 @@ class FoodItemsViewController: UIViewController {
         }
     }
     
-    @objc func editCustomButtonTapped(_ sender: UIButton) {
-        if editMode {
-            headerButtonsTitleSwapColorChange("off")
-            turnEditMode("off")
-        } else {
-            headerButtonsTitleSwapColorChange("on")
-            turnEditMode("on")
-        }
-    }
+//    @objc func editCustomButtonTapped(_ sender: UIButton) {
+//        if editMode {
+//            headerButtonsTitleSwapColorChange("off")
+//            turnEditMode("off")
+//        } else {
+//            headerButtonsTitleSwapColorChange("on")
+//            turnEditMode("on")
+//        }
+//    }
     
     
     
@@ -289,7 +302,6 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
             let cell = foodCollection.cellForItem(at: indexPath) as? FoodCell
             foodCollection.turnEditModeOff(at: indexPath)
             cell?.isEditing = false
-            print(cell!.isEditing)
             foodCollection.deselectAllVisibleItems(animated: false)
             performSegue(withIdentifier: "DetailsSegue", sender: indexPath)
         } else {
@@ -348,7 +360,7 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
         
     }
  
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodItem", for: indexPath) as! FoodCell
         if editMode {
@@ -368,4 +380,7 @@ extension FoodItemsViewController: UICollectionViewDataSource, UICollectionViewD
         cell.image.image = DataService.instance.getFood(for: indexPath).image
         return cell
     }
+    
+    
+    
 }

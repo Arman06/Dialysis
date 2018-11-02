@@ -13,10 +13,7 @@ final class DataService {
     
     private let currentDate = Date()
     
-    
-    lazy private var indexArray = [0...3, 4...6, 7...11]
-    
-    lazy private var dateArray = Array(foodArray.keys)
+    lazy private var dateArray = Array(foodArray.keys.sorted(by: >))
     
     
     lazy private var foodArray =
@@ -43,21 +40,12 @@ final class DataService {
                                    FoodItem(name: "Лимон", image: UIImage(named: "lemon.jpg") ?? #imageLiteral(resourceName: "Image-placeholder"), potassium: 138, sodium: 2)]
          ]
     
-//    func addFood(_ food: FoodItem) {
-//        foodArray.append(food)
-//    }
-//
-//    func addFood(at index: Int, _ food: FoodItem) {
-//        foodArray[currentDate].insert(food, at: index)
-//    }
+   
+   
     
     func addFood(at indexPath: IndexPath, _ food: FoodItem) {
         foodArray[dateArray[indexPath.section]]!.insert(food, at: indexPath.row)
     }
-    
-//    func addFood(in section: Int, _ food: FoodItem) {
-//        addFood(at: indexArray[section].first!, food)
-//    }
     
     func removeFood(at indexPath: IndexPath) {
         foodArray[dateArray[indexPath.section]]!.remove(at: indexPath.row)
@@ -84,8 +72,8 @@ final class DataService {
         
     }
     
-    func getFood() -> [Date:[FoodItem]] {
-        return foodArray
+    func getFood() -> [FoodItem] {
+        return Array(foodArray.values).flatMap{ $0 }
     }
     
     func getDates() -> [Date] {
@@ -96,8 +84,16 @@ final class DataService {
         return foodArray[dateArray[section]] ?? [FoodItem]()
     }
     
+    func getFoodNames() -> [String] {
+        return Array(foodArray.values).flatMap{ $0 }.map{ $0.name }
+    }
+    
     func getFood(for indexPath: IndexPath) -> FoodItem {
         return foodArray[dateArray[indexPath.section]]![indexPath.row]
+    }
+    
+    func getFoodForTableView(for indexPath: IndexPath) -> FoodItem {
+        return Array(foodArray.values).flatMap{ $0 }[indexPath.row]
     }
     
     func numberOfSections() -> Int {
@@ -107,6 +103,10 @@ final class DataService {
     
     func numberOfItemsInSection(_ section: Int) -> Int {
         return getFood(for: section).count
+    }
+    
+    func numberOfItemsInSections() -> Int {
+        return Array(foodArray.values).flatMap{ $0 }.count
     }
     func checkDate() {
         
@@ -118,7 +118,7 @@ final class DataService {
         return " \(dateFormatter.string(from: date))"
     }
     
-    func stringDateFor(for indexPath: IndexPath) -> String{
+    func stringDateFor(for indexPath: IndexPath) -> String {
         return dateToString(dateArray[indexPath.section])
     }
     
